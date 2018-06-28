@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Blockchain Lottery</title>
+    <!-- Stylesheet
+    ================================================== -->
+    <link rel="stylesheet" type="text/css"  href="styles/css/style.css">
+    <link rel="stylesheet" type="text/css" href="styles/less/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Changa" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,800,600,300' rel='stylesheet' type='text/css'>
+    <!-- this resource is used for the animations on the mainpage onload. From more: https://daneden.github.io/animate.css/ -->
+    <link rel="stylesheet" type="text/css"  href="styles/animations/animate.css">
+</head>
+
+<!-- Header -->
+<div id="intro">
+  <div class="intro-body">
+      <div class="mainpage-container">
+          <div class="btn-container-top chosen-btn">
+              <a id="bet" class="main-btn top-btn-base">BET</a>
+              <a id="withdraw" class="main-btn top-btn-base">Withdraw</a>
+              <a id="bet-amount-label" class="main-btn top-btn-base">BET Amount<span>0.1 ETH</span></a>
+          </div>
+
+          <!-- this div contains the Main page Content
+          ============================================================================ -->
+          <div class="content pulse animated" id="div-mainpage">
+              <h1>Win Win<br><span class="brand-heading">Blockchain</span><br>Lottery</h1>
+              <p class="mainpage-text">Powered by Ethereum </p>
+          </div>
+
+          <!-- this div contains the Network Content (Mainnet and Ropsten)
+          ============================================================================ -->
+          <div class="content pulse animated" id="div-mainnet-ropsten">
+              <div class="content mainnet-network-container">
+                  <h4 class="dynamic-title">Mainnet Network</h4>
+                  <div class="even-odd-container">
+                      <div id="even-btn" class="even-odd-btn" name="betChoice" value = "2">EVEN</div>
+                      <span id="or">or</span>
+                      <div id="odd-btn" class="even-odd-btn" name="betChoice" value = "1">ODD</div>
+                  </div>
+                  <div id="buttonBetting" class="btn btn-lg- btn-info" value="Bet">Bet</div>
+                  <div class="hero-info">
+                      <div class="hero-el">
+                          <p id="prevTargetBlock">Previous target Block: <p id="prevTargetBlockContract"></p></p>
+                      </div>
+                      <div class="hero-el">
+                          <p id="targetBlock">Target Block: <p id="targetBlockContractt"></p> </p>
+                      </div>
+                      <div class="hero-el">
+                          <p id="nextTargetBlock">Next target Block: <p id="nextTargetBlockContract"></p></p>
+                      </div>
+                  </div>
+                  <div class="table-header-separate">
+                      <p id="RemainingBlocksTillEndBet">Betting for <span id="targetBlockContractC"></span> end after <span id="endAfterBlocks"></span></p>
+                  </div>
+                  <div class="table">
+                      <div class="table-row">
+                          <div class="table-col">
+                              <p class="table-heading">EVEN</p>
+                              <p id="even" class="table-value"></p>
+                          </div>
+                          <div class="table-col">
+                              <p class="table-heading">ODD</p>
+                              <p id="odd" class="table-value"></p>
+                          </div>
+                      </div>
+                      <div class="table-row">
+                          <div class="table-col">
+                              <p class="table-heading">Even Revenue</p>
+                              <p id="evenRevenue" class="table-value"></p>
+                          </div>
+                          <div class="table-col">
+                              <p class="table-heading">Odd Revenue</p>
+                              <p id="oddRevenue" class="table-value"></p>
+                          </div>
+                      </div>
+                      <div class="table-row">
+                          <div class="table-col">
+                              <p class="table-heading">Even Revenue per Participant</p>
+                              <p id="evenRevenueForParticipant" class="table-value"></p>
+                          </div>
+                          <div class="table-col">
+                              <p class="table-heading">Odd Revenue per Participant</p>
+                              <p id="oddRevenueForParticipant" class="table-value"></p>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <!-- this div contains the Withdraw Content
+          ============================================================================ -->
+          <div class="content pulse animated" id="div-withdraw">
+              <h4 class="title">Withdraw</h4>
+
+              <div class="container">
+                  <div class="form">
+                      <input type="text" id="blockNum" class="form__field" placeholder="Your Target Block Number" />
+                      <button type="button" id="WithdrawButton" class="btn btn--primary btn--inside btn-info" value="Withdraw">Withdraw</button>
+                  </div>
+              </div>
+              <br>
+
+              <div class="get-pendings-container">
+                  <div id="holder">
+                      <div id="GetPenndingTransactions" class="button" value="GetPennding" >
+                          <p class="btnText">Get Pending</p>
+                          <div class="btnTwo">
+                              <p class="btnText2">GO!</p>
+                          </div>
+                      </div>
+                  </div>
+                  <ul>
+                      <li id="unwithdrawn">
+                          <span class="unwith"></span>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+
+          <!-- this div contains the How it works Content
+          ============================================================================ -->
+          <div class="content pulse animated" id="div-how-it-works">
+              <h4 class="title">How it works</h4>
+
+              <div class="container">
+                  <div>
+                      <p>How it works</p>
+                      <br/>
+                      <p>How it works</p>
+                      <br/>
+                      <p>How it works</p>
+                      <br/>
+                      <p>How it works</p>
+                      <br/>
+                      <p>How it works</p>
+                      <br/>
+                      <p>How it works</p>
+                      <br/>
+                      <p>How it works</p>
+                  </div>
+              </div>
+          </div>
+
+          <div class="btn-container zoomInDown animated">
+            <a id="ropsten" href="#Ropsten" class="main-btn">Ropsten</a>
+            <a id="how-it-works" href="#HowItWorks" class="main-btn how-it-works-margins">How it works</a>
+            <a id="mainnet" href="#Mainnet" class="main-btn">Mainnet</a>
+          <div/>
+      </div>
+      </div>
+  </div>
+</div>
+<!--<div class="arrow-down" />-->
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="js/mainPageButtons.js"></script>
+<script type="text/javascript" src="js/ropstenMainnetNetwork.js"></script>
+</body>
+</html>
