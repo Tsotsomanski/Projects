@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>Bak3ry bOOk</title>
+    <link rel="stylesheet" type="text/css" href="fonts/icomoon/style.css"/>
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script type="text/javascript" src="scripts/scripts.js"></script>
+</head>
+
+<body>
+
+<h1 class="banner">...Your bakery book</h1>
+<!-- -->
+<div class="container">
+    <section class="login">
+        <h2>To see the secret recipes please log-in...</h2>
+        <div class="input-container">
+            <input type="email" placeholder="e-mail" name="e-mail"/>
+            <input type="password" placeholder="password"/>
+        </div>
+        <div class="login-btn-div">
+            <button class="login-btn"><p>Log in</p></button>
+        </div>
+
+    </section>
+    <section class="recipes-page">
+        <ul class="main-nav">
+            <a href="#" class="nav-el"><span class="icon-list2"></span>Recipes</a>
+            <a href="#" class="nav-el"><span class="icon-images"></span>Galery</a>
+        </ul>
+
+        <div class="sub-nav">
+            <a href="#" class="sub-nav-el"><span class="icon-spoon-knife"></span></a>
+            <a href="#" class="sub-nav-el"><span class="icon-plus"></span></a>
+        </div>
+
+        <div class="recipes-content">
+            <div class="recipes-gallery">
+                <img width="200px" height="auto" src="img/placeholder.png"/>
+                <img width="200px" height="auto" src="img/placeholder.png"/>
+                <img width="200px" height="auto" src="img/placeholder.png"/>
+                <img width="200px" height="auto" src="img/placeholder.png"/>
+                <img width="200px" height="auto" src="img/placeholder.png"/>
+                <img width="200px" height="auto" src="img/placeholder.png"/>
+                <img width="200px" height="auto" src="img/placeholder.png"/>
+                <img width="200px" height="auto" src="img/placeholder.png"/>
+                <img width="200px" height="auto" src="img/placeholder.png"/>
+                <img width="200px" height="auto" src="img/placeholder.png"/>
+                <img width="200px" height="auto" src="img/placeholder.png"/>
+                <img width="200px" height="auto" src="img/placeholder.png"/>
+                <img width="200px" height="auto" src="img/placeholder.png"/>
+                <img width="200px" height="auto" src="img/placeholder.png"/>
+                <img width="200px" height="auto" src="img/placeholder.png"/>
+            </div>
+
+            <div class="recipes-addNew">
+                <div class="new-photo-title">
+                    <div class="new-photo">
+                        <input type="button" id="btn" value="+"/><br>
+                        <input type="file" id="upload" style="visibility:hidden"/>
+                    </div>
+                    <div class="new-title">
+                        <textarea class="textarea-title" placeholder="Enter the title here:"></textarea>
+                    </div>
+                </div>
+                <div class="new-content" id="style-2">
+                    <textarea class="force-overflow" placeholder="Enter text here:"></textarea>
+                </div>
+                <a id="to-top">^</a>
+            </div>
+
+            <div class="recipes-choose">
+                <div class="recipe-container">
+                    <img class="choose-photo" src="img/dish.jpg"/>
+                    <div class="choose-title">Title1</div>
+                </div>
+                <div class="recipe-container">
+                    <img class="choose-photo" src="img/dish.jpg"/>
+                    <div class="choose-title">Title2</div>
+                </div>
+                <div class="recipe-container">
+                    <img class="choose-photo" src="img/dish.jpg"/>
+                    <div class="choose-title">Title3</div>
+                </div>
+                <div class="recipe-container">
+                    <img class="choose-photo" src="img/dish.jpg"/>
+                    <div class="choose-title">Title4</div>
+                </div>
+                <div class="recipe-container">
+                    <img class="choose-photo" src="img/dish.jpg"/>
+                    <div class="choose-title">Title5</div>
+                </div>
+                <div class="recipe-container">
+                    <img class="choose-photo" src="img/dish.jpg"/>
+                    <div class="choose-title">Title5</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+</body>
+
+<script>
+
+    (function () {
+        let toTopElement = document.getElementById("to-top");
+        let loginBtn = document.getElementsByClassName("login-btn")[0];
+        let recipesPage = document.getElementsByClassName('recipes-page')[0];
+        let login = document.getElementsByClassName('login')[0];
+        let mainNav = document.getElementsByClassName('main-nav')[0];
+        let recipesGallery = document.getElementsByClassName('recipes-gallery')[0];
+        let mainNavRecipes = document.querySelectorAll('.nav-el:first-child')[0];
+        let subNav = document.getElementsByClassName('sub-nav')[0];
+        let addNewRecipe = document.getElementsByClassName('recipes-addNew')[0];
+        let chooseRecipe = document.getElementsByClassName('recipes-choose')[0];
+        let mainNavGallery = document.querySelectorAll('.nav-el:last-child')[0];
+        let subNavAdd = document.querySelectorAll('.sub-nav-el:last-child')[0];
+        let subNavRecipies = document.querySelectorAll('.sub-nav-el:first-child')[0];
+
+        toTopElement.addEventListener("click", function () {
+            let timeOut;
+            if (document.body.scrollTop != 0 || document.documentElement.scrollTop != 0) {
+                window.scrollBy(0, -50);
+                timeOut = setTimeout('scrollToTop()', 10);
+            }
+            else {
+                clearTimeout(timeOut);
+            }
+        });
+
+        // |--- LOGIN Button function ---|
+        loginBtn.addEventListener("click", function () {
+            var email = document.querySelectorAll('input[type=email]')[0].value;
+            var password = document.querySelectorAll('input[type=password]')[0].value;
+
+            login.style.display = 'none';
+            recipesPage.style.visibility = 'visible';
+            recipesPage.style.display = 'flex';
+            mainNav.classList.toggle('fade-in');
+            //This is the Validation for the LOGIN
+            /*if (email == 'elii_p1' && password == 'dp660606') {
+                alert('You are loged in');
+                    $('.login').hide(700);
+                    $('.recipes-page').show(100);
+                }
+                else if (email == 'elii_p1' && password != 'dp660606') {
+                    alert('You entered a wrong password. Please try again');
+                }
+                else if (email != 'elii_p1' && password == 'dp660606') {
+                    alert('You entered a wrong email address. Please try again');
+                }
+                else {
+                    alert('You entered a wrong email address and password. Please try again');
+                }
+            */
+        });
+
+        /* Click event for "Recipe" option - Trigger the sub-navigation bar*/
+        mainNavRecipes.addEventListener("click", function () {
+            recipesGallery.style.display = 'none';
+            subNav.classList.add('fade-in');
+            subNav.style.display = 'block';
+        });
+
+        /* Click event for "Galery" option*/
+        mainNavGallery.addEventListener("click", function () {
+            subNav.style.display = 'none'; 				//hide(100)
+            addNewRecipe.style.display = 'none'; 		//hide(100);
+            recipesGallery.style.visibility = "visible"; //fadeIn(700);
+            recipesGallery.style.display = 'block';
+            chooseRecipe.style.display = 'none';
+        });
+
+        /* Click event for "Add new" option*/
+        subNavAdd.addEventListener("click", function () {
+            chooseRecipe.style.display = 'none';
+            addNewRecipe.style.display = 'block';
+        });
+
+        /* Click event for "Choose" option*/
+        subNavRecipies.addEventListener("click", function () {
+            addNewRecipe.style.display = 'none';
+            chooseRecipe.style.display = 'flex';
+            //$('.recipes-choose').fadeIn(500).css('display', 'flex');
+        });
+
+        // Add recipe photo:
+        document.getElementById("btn").addEventListener("click", function () {
+            $("#upload").click();
+        })
+    })();
+</script>
+</html>
