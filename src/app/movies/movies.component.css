@@ -1,0 +1,28 @@
+.gallery-wrapper .margin-top-50 {
+    margin-top: 70px;
+}
+
+.gallery-wrapper {
+    margin: 30px;
+}
+
+.gallery-wrapper .movie-title {
+    overflow: hidden;
+    height: 30px;
+}
+
+.search-btn {
+    margin-top: 20px;
+}
+
+h3 {
+    background: rgba(255, 255, 252, 0.4);
+    text-align: center;
+    color: black;
+    border-radius: 12px;
+    width: 20%;
+    margin: 0 auto;
+    font-size: 30px;
+    font-family: monospace;
+    cursor: default;
+}
