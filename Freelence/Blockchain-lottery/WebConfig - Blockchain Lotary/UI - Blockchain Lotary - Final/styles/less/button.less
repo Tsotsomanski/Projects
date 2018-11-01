@@ -1,0 +1,154 @@
+.chosen-btn {
+  width: 100%;
+  position: relative;
+  &{
+    @media @tablet {
+      flex-flow: row wrap;
+    }
+  }
+
+  #bet {
+    @media @phone {
+      width: 100%;
+    }
+    @media @tablet {
+      width: 47%;
+    }
+    @media @phone, @tablet {
+      order: 2;
+      margin-right: 0;
+    }
+    margin-right: 15px;
+    order: 1;
+    justify-content: center;
+  }
+
+  #bet-amount-label {
+    @media @phone, @tablet {
+      order: 1;
+      margin-right: 0;
+    }
+    justify-content: center;
+    margin-right: 15px;
+    order: 2;
+    min-width: 295px;
+    width: 100%;
+  }
+
+  #withdraw {
+    @media @phone {
+      width: 100%;
+    }
+    @media @tablet {
+      width: 47%;
+    }
+    @media @phone, @tablet {
+      order: 3;
+      margin-right: 0;
+    }
+    justify-content: center;
+    margin-right: 0;
+    order: 3;
+  }
+
+  .main-btn {
+    display: none;
+    width: 30%;
+    background: @ropsten-pink;
+    margin-top: 10px;
+    justify-content: center;
+
+    &:not(#bet-amount-label):hover {
+      box-shadow: inset 0px 0px 10px 1px @clickedButton;
+      border: 2px solid rgba(0, 0, 0, 0);
+    }
+  }
+}
+
+.visited-button {
+  box-shadow: inset 0px 0px 13px 4px @clickedButton;
+  border: 2px solid rgba(0, 0, 0, 0);
+}
+
+.btn-container, .btn-container-top {
+  user-select: none;
+  @media @phone, @tablet {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .main-btn {
+    min-width: 173px;
+    width: 33.3%;
+    border-radius: 5px;
+    padding: 12px 24px;
+    color: white;
+    font-size: 18px;
+    border: 2px solid rgba(0, 0, 0, 0);
+    //text-decoration: none;
+    //&:last-child {TODO
+    //  margin-right: 0;
+    //}
+    @media @phone {
+      width: 100%;
+      //margin-right: 0; TODO
+    }
+
+
+
+    &:hover {
+      background: none;
+      border-bottom: 2px solid white;
+      border-top: 2px solid white;
+      font-size: 18px;
+      letter-spacing: 1px;
+      color: white;
+    }
+
+    &:focus, &:active {
+      color: white;
+    }
+  }
+
+  #ropsten {
+    justify-content: center;
+    background-color: @ropsten-pink;
+    &:hover {
+      background: @ropsten-dark;
+    }
+  }
+
+  #how-it-works{
+    background-color: @how-it-works-orange;
+    &:hover {
+      background: @how-it-works-dark;
+    }
+  }
+
+  #mainnet{
+    background-color: @mainnet;
+    justify-content: center;
+    &:hover {
+      background: @mainnet-dark;
+    }
+  }
+}
+
+.how-it-works-after {
+  justify-content: center;
+  display: flex;
+  min-width: 284px;
+  position: relative;
+  padding-left: 0;
+  padding-right: 0;
+  width: 100%!important;
+}
+
+#RemainingBlocksTillEndBet {
+  border-radius: 15px;
+  box-shadow: 0px -5px 8px -2px white;
+  font-size: 18px;
+  padding: 5px;
+  color: @bet-amount-blue;
+  text-shadow: 0px 0px 2px white;
+}

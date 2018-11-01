@@ -1,0 +1,100 @@
+#div-mainpage {
+  @media @resizing {
+    margin-bottom: 200px;
+  }
+}
+
+.hero-info {
+  display: flex;
+  width: 60%;
+  margin: 0 auto;
+  margin-bottom: 12px;
+  margin-top: 50px;
+
+  p {
+    font-size: 16px;
+  }
+
+  .hero-el {
+    min-width: 112px;
+    padding: 7px 0;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid @bet-amount-blue;
+    color: @bet-amount-blue;
+    text-shadow: 0px 0px 2px white;
+  }
+}
+
+.mainnet-network-container{
+  font-family: Roboto, sans-serif;
+  flex-direction: column;
+
+    .even-odd-container {
+      font-family: Roboto, sans-serif;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 20px;
+      position: relative;
+      width: 205px;
+      user-select: none;
+      margin-bottom: 40px;
+      margin-top: 40px;
+
+      #odd-btn, #even-btn {
+        background: none;
+        border: 1px solid white;
+        padding: 11px;
+        width: 100px;
+        display: inline-block;
+        cursor: pointer;
+      }
+        #odd-btn {
+          border-top-right-radius: 50px;
+          border-bottom-right-radius: 50px;
+        }
+        #even-btn{
+          border-top-left-radius: 50px;
+          border-bottom-left-radius: 50px;
+        }
+        #or {
+          background: rgba(255, 255, 255, .8);
+          border-radius: 50%;
+          position: absolute;
+          padding: 5px 10px;
+          left: 41%;
+          top: 9px;
+          content: 'or';
+          z-index: 1;
+          color: black;
+          font-size: 16px;
+        }
+    }
+
+
+
+    #buttonBetting {
+      user-select: none;
+      border-radius: 50px;
+      border: 3px solid rgba(197, 200, 204, 0.9);
+      font-size: 30px;
+      line-height: 43px;
+      cursor: pointer;
+      width: 210px;
+      margin: 0 auto;
+    }
+
+    .bet-amount {
+      background-color: #3498DB;
+      border-radius: 0 0 100% 0px;
+      width: 139px;
+      height: 73px;
+      margin-bottom: 20px;
+
+      p {
+        font-size: 16px;
+        padding: 4px 9px;
+        text-align: left;
+      }
+    }
+}
