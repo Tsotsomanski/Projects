@@ -1,0 +1,245 @@
+@font-face {
+  font-family: banner-font;
+  src: url(../fonts/Bigdey.ttf);
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body,
+html {
+  height: 100%;
+  background-color: #F8B195;
+  font-family: "Bradley Hand ITC", Times;
+}
+.banner {
+  background-color: #6C567B;
+  text-align: center;
+  padding: 20px 0px;
+  font-family: banner-font;
+  font-size: 42px;
+}
+.login h2 {
+  padding-top: 100px;
+  padding-bottom: 40px;
+  text-align: center;
+}
+.login {
+  margin: auto;
+  text-align: center;
+}
+.input-container {
+  text-align: center;
+  margin: auto;
+  display: inline-block;
+}
+.input-container input {
+  display: block;
+  padding: 10px 10px;
+  margin-bottom: 20px;
+}
+.input-container input:focus {
+  border-color: rgba(169, 109, 199, 0.7);
+  box-shadow: 1px 1px 4px;
+}
+.login-btn {
+  font-size: 16px;
+  width: 100px;
+  background-color: rgba(1, 1, 255, 0.1);
+  border-radius: 5px;
+  box-shadow: red 0px 0px 6px;
+  border: none;
+  width: 75px;
+  padding: 2px 0;
+}
+.login-btn:hover {
+  background-color: rgba(1, 1, 255, 0.2);
+}
+.login-btn:active {
+  background-color: rgba(1, 1, 255, 0.3);
+  box-shadow: rgba(1, 1, 255, 0.3) 0px 3px 6px;
+}
+.login-btn p {
+  display: inline;
+  font-size: 24px;
+  font-family: banner-font;
+}
+.recipes-page {
+  text-align: center;
+  display: none;
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+}
+.main-nav {
+  width: 20%;
+  height: 100%;
+  background-color: #C06C84;
+}
+/* Main navigation ul elements styles*/
+ul a {
+  display: block;
+  padding: 20px 40px;
+  font-family: "Bradley Hand ITC", Times;
+  font-size: 26px;
+  text-decoration: none;
+}
+ul a:hover {
+  text-shadow: 2px 1px 3px white;
+}
+ul a:focus {
+  text-shadow: 2px 1px 3px white;
+}
+.sub-nav {
+  display: none;
+  width: 10%;
+}
+.sub-nav .sub-nav-el {
+  display: block;
+  padding: 10px 40px;
+  text-decoration: none;
+  font-size: 20px;
+  background-color: #F67280;
+  border-left: #C06C84;
+  border-top: #F67280 solid 1px;
+  border-bottom: #F67280 solid 1px;
+  border-right: #F67280 solid 1px;
+  margin-top: 13px;
+  margin-bottom: 10px;
+  box-shadow: 0px -5px 10px #6C567B;
+}
+.sub-nav .sub-nav-el:hover {
+  text-shadow: 2px 1px 3px white;
+}
+.sub-nav .sub-nav-el:focus {
+  text-shadow: 2px 1px 3px white;
+}
+.nav-el:focus {
+  box-shadow: 0px -1px 8px #6C567B;
+}
+.recipes-content {
+  width: 80%;
+}
+.recipes-addNew,
+.recipes-gallery {
+  display: none;
+  width: 100%;
+}
+.recipes-addNew {
+  margin-left: 10px;
+  background-image: url(../img/sheet.png);
+  background-size: 100%;
+  height: 100%;
+}
+.new-photo-title {
+  width: 100%;
+  display: flex;
+  margin: auto;
+}
+.new-photo {
+  width: 15%;
+  padding: 50px 0;
+  border-radius: 45%;
+  background-color: white;
+  text-align: center;
+  margin-left: 15%;
+  margin-top: 20px;
+  background-image: url(../img/dish.jpg);
+  background-size: cover;
+}
+.new-title {
+  width: 40%;
+  margin-top: 35px;
+}
+.new-title textarea {
+  border: none;
+  font-family: "Bradley Hand ITC", Times;
+  font-size: 32px;
+  margin-bottom: 10px;
+  padding-top: 15px;
+  width: 90%;
+  background-color: transparent;
+  font-weight: bold;
+}
+.new-title textarea::-webkit-input-placeholder {
+  color: white;
+}
+.new-title textarea:-moz-placeholder {
+  /* Firefox 18- */
+  color: white;
+}
+.new-title textarea::-moz-placeholder {
+  /* Firefox 19+ */
+  color: white;
+}
+.new-title textarea:-ms-input-placeholder {
+  color: white;
+}
+.new-content {
+  width: 70%;
+  height: 70%;
+  padding-top: 15px;
+  border-radius: 5%;
+  background-color: rgba(169, 109, 199, 0.4);
+  margin: auto;
+  margin-top: 45px;
+}
+.new-content textarea {
+  width: 100%;
+  height: 100%;
+  padding: 10px 10px;
+  font-family: "Bradley Hand ITC", Times;
+  border: none;
+  font-size: 23px;
+  padding-bottom: 15px;
+  background-color: transparent;
+  line-height: 40px;
+}
+.recipe-container {
+  margin: 20px 20px;
+  width: 25%;
+  height: 25%;
+}
+.recipes-choose {
+  justify-content: space-between;
+  margin: 20px 20px;
+  display: none;
+  height: 100%;
+}
+.choose-photo {
+  background-image: url(../img/dish.jpg);
+  width: 100%;
+}
+.choose-title {
+  font-family: "Bradley Hand ITC", Times;
+  font-size: 23px;
+  word-wrap: break-word;
+  background-color: white;
+  position: relative;
+}
+.button {
+  background-color: none;
+  border: none;
+}
+#to-top {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  background-color: red;
+  color: black;
+  bottom: 0;
+  right: 0;
+  font-size: 30px;
+  text-align: center;
+}
+.dropdown-list {
+  background-color: white;
+  color: red;
+  font-size: 32px;
+}
+#visualization {
+  width: 100%;
+  height: 200px;
+  margin: 0 auto;
+}
