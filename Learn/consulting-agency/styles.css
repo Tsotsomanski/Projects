@@ -1,0 +1,355 @@
+@import url('//fonts.googleapis.com/css?family=Montserrat');
+
+* {
+    font-family: "Montserrat";
+}
+body {
+    font-size: 16px;
+    margin: 0;
+}
+
+nav {
+    padding-top: 15px;
+}
+
+nav ul {
+    background-color: rgba(215, 174, 118, 0.9);
+    width: 73%;
+    margin: 0 auto;
+    padding: 0 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 0.8em;
+    padding: 15px 45px;
+}
+
+nav a:hover {
+    color: rgba(232, 190, 129, 0.9);
+}
+
+.body-wrapper {
+    background-image: url("images/Layer-759_02.jpg");
+    background-size: cover;
+}
+
+header h1 {
+    font-size: 3em;
+    text-align: center;
+    color: white;
+    padding-top: 35px;
+    text-shadow: 1px 1px 1px black;
+}
+
+header h4 {
+    font-size: 1.3em;
+    text-align: center;
+    color: white;
+    text-shadow: 1px 1px 3px black;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+
+main {
+    text-align: center;
+}
+
+header button {
+    font-size: 1.3em;
+    color: white;
+    margin-bottom: 300px;
+    background-color: rgb(8,8,32);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 0.6em;
+    font-weight: bold;
+}
+
+.services-btn:hover, .services-btn i:hover {
+    color: rgb(8,8,32);
+    background-color: rgba(215, 174, 118, 0.9);
+    cursor: pointer;
+}
+
+.btn-wrapper {
+    text-align: center;
+}
+
+.fa-chevron-right {
+    color: rgba(215, 174, 118, 0.9);
+    font-weight: bold;
+}
+
+.industries h2 {
+    font-size: 1.2em;
+}
+
+.industries h1 {
+    color: rgb(8, 8, 32);
+}
+
+.industries article {
+    display: inline-block;
+    width: 370px;
+    padding-top: 20px;
+    vertical-align: top;
+}
+
+.industries article .fa {
+    font-size: 22px;
+    background-color: #00003a;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 50%;
+    color: white;
+    float: left;
+    text-align: center;
+    vertical-align: top;
+    text-shadow: 0 0 .4px white;
+}
+
+.industries article h2{
+    text-align: left;
+    padding-left: 60px;
+    color: rgb(8, 8, 32);
+    font-size: 0.9em;
+    vertical-align: top;
+}
+
+.industries article p{
+    text-align: left;
+    padding-left: 60px;
+    color: rgb(56, 59, 82);
+    font-size: 0.8em;
+    vertical-align: top;
+}
+
+.to-help {
+    background-image: url("images/steel-bg.jpg");
+    background-size: cover;
+    text-align: center;
+    height: 120px;
+}
+
+.to-help-wrapper {
+    background-color: rgba(255, 255, 255, .7);
+}
+
+#to-help-1{
+    padding-top: 39px;
+    color: rgba(255, 187, 67, 0.8);
+    text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+    line-height: 0.1px;
+    font-weight: 400;
+}
+
+#to-help-2{
+    text-shadow: 1px 1px 1px black;
+    padding-bottom: 63px;
+    line-height: 20px;
+    font-weight: 400;
+}
+
+main h1{
+    font-size: 2.3em;
+    text-align: center;
+    text-shadow: 0 0 1px black;
+}
+
+.choose-us {
+    background-image: url("images/background-choose-us.jpg");
+    background-size: cover;
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}
+
+.choose-us .choose-us-wrapper {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.choose-us h1 {
+    padding-top: 60px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 3px black;
+}
+
+.choose-us h2 {
+    text-align: center;
+    font-size: 1em;
+}
+
+.choose-us p {
+    text-align: left;
+    font-size: 0.8em;
+}
+
+.choose-us article{
+    display: inline-block;
+    width: 278px;
+    height: 110px;
+    vertical-align: middle;
+    border: 1.8px solid;
+    border-color: rgba(255, 198, 30, 0.6);
+    margin-bottom: 40px;
+    margin-right: 25px;
+    padding: 15px 30px;
+}
+
+.choose-us article:hover{
+    background-color: white;
+    color: #00003a;
+    text-shadow: none;
+}
+
+.choose-us div {
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.email-box {
+    background-image: url("images/consulting-woman.jpg");
+    background-size: cover;
+    height: 600px;
+}
+
+.email-box div {
+    background-color: rgba(255, 255, 255, 0.73);
+    float: right;
+    margin-top: 65px;
+    height: 430px;
+    width: 450px;
+    margin-right: 40px;
+}
+
+.email-box .quotes {
+    padding-top: 60px;
+    padding-left: 15px;
+    text-align: left;
+    line-height: 25px;
+    font-size: 0.9em;
+}
+
+blockquote {
+    border:none;
+    font-family:  Montserrat, "Times New Roman", Times, serif;
+    quotes: "\201C""\201D""\2018""\2019";
+}
+
+blockquote h3 {
+    font-size:15px;
+}
+
+blockquote p:before {
+    content: open-quote;
+    font-size:25px;
+    color: orange;
+}
+blockquote p:after {
+    content: close-quote;
+    font-size:25px;
+    color: orange;
+}
+
+.email-box .box {
+    background-color: #00003a;
+    height: 200px;
+    width: 355px;
+    margin-top: 0;
+    color: white;
+}
+
+.email-box .box p:first-child {
+    font-size: 0.8em;
+    padding-left: 170px;
+}
+
+.email-box .box p:last-child {
+    font-size: 1.5em;
+    text-align: left;
+    padding-left: 20px;
+}
+
+.sponsors p{
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 10px;
+}
+
+.footer-wrapper {
+    background-color: #00003a;
+    color: white;
+    font-size: 0.8em;
+}
+
+.footer-wrapper section{
+    display: inline-block;
+    padding: 15px 120px;
+    padding-bottom: 10px;
+}
+
+footer section {
+    width: 200px;
+    padding-right: 10px;
+    font-size: 0.8em;
+}
+
+footer div section {
+    width: 200px;
+    vertical-align: top;
+}
+
+.consulting p {
+    padding-left: 40px;
+}
+
+.consulting div {
+    width: 200px;
+    padding-top: 20px;
+    padding-left: 65px;
+    font-size: 1.3em;
+}
+
+.consulting div i {
+    background-color: white;
+    text-align: center;
+    border-radius:50%;
+    height: 20px;
+    width: 20px;
+    line-height: 20px;
+    color: #00003a;
+    padding: 2px 2px;
+    margin-right: 10px;
+}
+
+.instagram-widget img{
+    width: 60px;
+    height: 60px;
+    margin: 0;
+    padding: 0;
+}
+
+.columns {
+    display: inline-flex;
+    line-height: 20px;
+    padding-left: 24px;
+}
+
+.first-column {
+    padding-right: 20px;
+}
+
+.extra-links a{
+    display: block;
+    text-decoration: none;
+    font-size: 1.1em;
+    color: orange;
+}
+
+.images {
+    padding-left: 14px;
+}
