@@ -1,0 +1,17 @@
+.container {
+    //background: url("../assets/cool-hd-background.jpg");
+    background-size: cover;
+    display: flex;
+    flex-flow: column;
+    height: 100vh;
+
+    .srm-header {
+        text-align: center;
+    }
+
+    .crm-wrapper {
+        display: flex;
+        border-top: 1px solid silver;
+        height: 100%;
+    }
+}
