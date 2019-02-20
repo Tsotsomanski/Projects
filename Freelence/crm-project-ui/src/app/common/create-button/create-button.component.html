@@ -1,0 +1,11 @@
+<div class="btn-container">
+    <form [ngClass]="this.isInputShown ? 'form ' : 'hidden'">
+        <div [ngClass]="this.isBlue ? 'form-content blue-input-background' : 'form-content red-input-background'">
+            <input type="email" id="email" name="email" placeholder="your-email@example.com" #inputValue/>
+            <div>
+                <i class="fa fa-plus-circle" aria-hidden="true" (click)="this.onHandleSubmit($event, inputValue.value); inputValue.value=''"></i>
+            </div>
+        </div>
+    </form>
+    <div [ngClass]="this.isBlue ? 'btn-create blue-btn-background' : 'btn-create red-btn-background'" (click)='this.openInputForm()'>Create {{this.activity}}</div>
+</div>
