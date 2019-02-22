@@ -6,10 +6,10 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
     styleUrls: ['./create-button.component.scss']
 })
 export class CreateButtonComponent implements OnInit {
-    isInputShown;
-    isBlue;
-    @Input() btnColor;
-    @Input() activity;
+    isInputShown: boolean;
+    isBlue: boolean;
+    @Input() btnColor: string;
+    @Input() activity: string;
     @Output() handleSubmit: EventEmitter<any> = new EventEmitter<any>();
 
     constructor() {
@@ -19,11 +19,11 @@ export class CreateButtonComponent implements OnInit {
         this.btnColor === 'blue' ? this.isBlue = true : this.isBlue = false;
     }
 
-    openInputForm() {
+    openInputForm(): void {
         this.isInputShown = !this.isInputShown;
     }
 
-    onHandleSubmit(event, value) {
+    onHandleSubmit(event: any, value: string): void {
         event.preventDefault();
         this.handleSubmit.emit(value);
         this.isInputShown = !this.isInputShown;

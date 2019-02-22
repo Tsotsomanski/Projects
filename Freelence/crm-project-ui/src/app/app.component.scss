@@ -17,5 +17,10 @@
         border-top: 1px solid silver;
         height: 100%;
         overflow: hidden;
+
+        app-details {
+            width: 100%;
+            box-shadow: -1px 0 15px;
+        }
     }
 }

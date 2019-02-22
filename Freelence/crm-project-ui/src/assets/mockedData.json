@@ -1,0 +1,105 @@
+{
+    "clients": [
+        {
+            "name": "Georgi",
+            "email": "georgi@email.com",
+            "id": "1d",
+            "tasks": [
+                {"task1": "Hit the gym"},
+                {"task2": "Pay bills"}
+            ]
+        },
+        {
+            "name": "Alexander",
+            "email": "alexander@email.com",
+            "id": "1s",
+            "tasks": [
+                {"task5": "Buy eggs"}
+            ]
+        },
+        {
+            "name": "Milen",
+            "email": "milen@email.com",
+            "id": "5d",
+            "tasks": [
+                {"task2": "Pay bills"},
+                {"task6": "Read a book"},
+                {"task7": "Buy milk"},
+                {"task10": "Organize your room"}
+            ]
+        },
+        {
+            "name": "Evgeni",
+            "email": "evgeni@email.com",
+            "id": "2d",
+            "tasks": [
+                {"task1": "Hit the gym"},
+                {"task6": "Read a book"},
+                {"task7": "Buy milk"},
+                {"task10": "Organize your room"}
+            ]
+        },
+        {
+            "name": "Ivaylo",
+            "email": "ivaylo@email.com",
+            "id": "2x",
+            "tasks": [
+                {"task6": "Read a book"},
+                {"task7": "Buy milk"},
+                {"task8": "Buy sugar"}
+            ]
+        },
+        {
+            "name": "Tsvetoslav",
+            "email": "tsvetoslav@email.com",
+            "id": "9x",
+            "tasks": [
+                {"task1": "Hit the gym"},
+                {"task5": "Buy eggs"},
+                {"task6": "Read a book"}
+        ]
+        },
+        {
+            "name": "Todor",
+            "email": "todor@email.com",
+            "id": "2p",
+            "tasks": [
+                {"task2": "Pay bills"},
+                {"task5": "Buy eggs"},
+                {"task7": "Buy milk"},
+                {"task9": "Buy coffee"}
+            ]
+        },
+        {
+            "name": "Pavel",
+            "email": "georgi@email.com",
+            "id": "2v",
+            "tasks": [
+                {"task5": "Buy eggs"},
+                {"task6": "Read a book"},
+                {"task10": "Organize your room"}
+            ]
+        },
+        {
+            "name": "Dragan",
+            "email": "dragan@email.com",
+            "id": "5v",
+            "tasks": [
+                {"task1": "Hit the gym"},
+                {"task9": "Buy coffee"},
+                {"task10": "Organize your room"}
+            ]
+        },
+        {
+            "name": "Boyan",
+            "email": "boyan@email.com",
+            "id": "5m",
+            "tasks": [
+                {"task10": "Organize your room"},
+                {"task11": "Make your bad"},
+                {"task12": "Take your sister from school"},
+                {"task13": "Take your backpack from the school"}
+            ]
+        }
+    ]
+}

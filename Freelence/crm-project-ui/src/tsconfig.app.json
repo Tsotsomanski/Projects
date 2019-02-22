@@ -1,8 +1,17 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../out-tsc/app",
-    "types": []
+      "outDir": "../out-tsc/app",
+      "types": [],
+      "target": "es5",
+      "module": "commonjs",
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "emitDecoratorMetadata": true,
+      "experimentalDecorators": true,
+      "lib": [ "es2015", "dom" ],
+      "noImplicitAny": true,
+      "suppressImplicitAnyIndexErrors": true
   },
   "exclude": [
     "test.ts",
