@@ -1,9 +1,9 @@
 <div  class='clients-container'>
     <h4>Clients</h4>
     <div class='clients-wrapper'>
-        <ul class='clients-list' *ngIf='this.clientsData'>
-        <li *ngFor='let client of this.clientsData' (click)='this.showClientsTasks(client.id)'> {{client.name}} </li>
+        <ul class='clients-list' *ngIf='clientsData'>
+        <li *ngFor='let client of clientsData' (click)='showClientTasks(client.id);'> {{client.name}} </li>
         </ul>
     </div>
-    <app-create-button (handleSubmit)='onCreateClient($event)' btnColor='red' activity='client'> </app-create-button>
+    <app-create-button (handleSubmit)='createClient($event)' btnColor='red' activity='client'> </app-create-button>
 </div>

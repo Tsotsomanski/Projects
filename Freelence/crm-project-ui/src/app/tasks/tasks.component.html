@@ -1,9 +1,9 @@
 <div class='tasks-container'>
-    <h4>Tasks</h4>
-    <div class='tasks-wrapper'>
-        <ul class='clients-tasks' *ngIf='this.tasksList'>
-            <li *ngFor='let task of this.tasksList'> {{task}} </li>
-        </ul>
+    <div class='tasks-lists'>
+        <app-my-tasks></app-my-tasks>
+        <app-tasks-per-client [clientsData]='clientsData' (currentClientSelected)='onCurrentClientSelected($event)'></app-tasks-per-client>
     </div>
-    <app-create-button (handleSubmit)='onCreateTask($event)' btnColor='blue' activity='task'></app-create-button>
+    <div class='details'>
+        <app-details [currentClientData]='currentClientData'></app-details>
+    </div>
 </div>

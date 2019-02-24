@@ -1,0 +1,13 @@
+<div class='tasks-per-client-container'>
+    <div class='tasks-wrapper'>
+        <a><h4>Client's Tasks</h4></a>
+    </div>
+    <div class='tasks-wrapper'>
+        <ul *ngIf='tasksList' class='clients-tasks'>
+            <li *ngFor='let task of tasksList'>  {{task}} </li>
+        </ul>
+        <p *ngIf='!tasksList'> Choose client</p>
+    </div>
+    <!--(handleSubmit)='onCreateTask($event)'-->
+    <app-create-button  btnColor='blue' activity='task'></app-create-button>
+</div>

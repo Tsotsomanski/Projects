@@ -8,6 +8,8 @@ import { TasksComponent } from './tasks/tasks.component';
 import { DetailsComponent } from './details/details.component';
 import { CreateButtonComponent } from './common/create-button/create-button.component';
 import { CrmService } from './services/crm.service';
+import { TasksPerClientComponent } from './tasks/tasks-per-client/tasks-per-client.component';
+import { MyTasksComponent } from './tasks/my-tasks/my-tasks.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +17,9 @@ import { CrmService } from './services/crm.service';
       ClientsComponent,
       TasksComponent,
       DetailsComponent,
-      CreateButtonComponent
+      CreateButtonComponent,
+      TasksPerClientComponent,
+      MyTasksComponent
   ],
   imports: [
       BrowserModule,

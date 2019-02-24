@@ -7,31 +7,25 @@ import {Subscription} from 'rxjs';
   templateUrl: './clients.component.html',
   styleUrls: ['./clients.component.scss', '../../assets/common.scss']
 })
-
 export class ClientsComponent implements OnInit, OnDestroy {
-    private crmData: any;
-    isInputShown: Boolean = false;
+    private crmServiceSubscription: Subscription;
     clientsData: any;
-    crmServiceSubscription: Subscription;
 
     constructor( private crmService: CrmService ) {}
 
     ngOnInit() {
         this.crmServiceSubscription = this.crmService.getCrmData().subscribe(data => {
-            this.crmData = data;
-            this.clientsData = this.crmData.clients;
+            this.clientsData = data;
+            this.crmService.setClientsData(this.clientsData);
         });
     }
 
-    onCreateClient(newClientName: string): void {
-        if (newClientName !== '') {
-            // TODO: Fix this to push in the object from the BE
-            this.clientsData.push(newClientName);
-        }
+    showClientTasks(clientId: number) {
+        this.crmService.passId(clientId);
     }
 
-    showClientsTasks(clientId: string) {
-        this.crmService.setClientTasksInfo(this.clientsData, clientId);
+    createClient(newClientName: string) {
+        this.crmService.setNewClient(newClientName);
     }
 
     ngOnDestroy() {

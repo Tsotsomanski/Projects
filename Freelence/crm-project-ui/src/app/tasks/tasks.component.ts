@@ -1,4 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Client} from '../Interfaces/Client.model';
+import {Subscription} from 'rxjs';
 import { CrmService } from '../services/crm.service';
 
 @Component({
@@ -6,43 +8,45 @@ import { CrmService } from '../services/crm.service';
   templateUrl: './tasks.component.html',
   styleUrls: ['./tasks.component.scss', '../../assets/common.scss']
 })
-export class TasksComponent implements OnInit {
-    tasksObject: [object];
-    tasksList: any = [];
+export class TasksComponent implements OnInit, OnDestroy {
+    private crmDataLoadedSubscribtion: Subscription;
+    clientsData: [Client];
+    currentClientData: Client;
+    allActiveTasks: [string];
 
-    constructor( private crmService: CrmService) {
-        crmService.showClientTasksEmitter.subscribe((data: any) => {
-            const clientData = data;
-            this.extractClientTasks(clientData);
+    constructor( private crmService: CrmService ) {}
+
+    ngOnInit() {
+        this.crmDataLoadedSubscribtion = this.crmService.crmDataLoadedEmitter.subscribe((data: any) => {
+            this.clientsData = data;
+            this.takeAllActiveTasks(this.clientsData);
         });
     }
 
-    ngOnInit() {}
-
-    onCreateTask(newClientTask: any): void {
-        // TODO: Fix this to push in the object from the BE
-        if (newClientTask !== '') {
-            this.tasksObject.push(newClientTask);
-        }
+    onCurrentClientSelected(currentClient: Client) {
+        this.currentClientData = currentClient;
     }
 
-    // TODO: Make interfaces once got the BE synced
-    extractClientTasks(tasksData: any) {
-        for (const client of tasksData.clientsData) {
-            if (client.id === tasksData.clientId) {
-                this.tasksObject = client.tasks;
-                this.fillTasksNamesList(this.tasksObject);
+    takeAllActiveTasks(data: [Client]) {
+        if (data) {
+            for (const clientIndex in this.clientsData) {
+                const currentClient = this.clientsData[clientIndex];
+                const currentTasks = this.clientsData[clientIndex].jobs;
+                if (currentTasks.length > 0) {
+                    for (const taskIndex in currentTasks) {
+                        const currentTask = currentClient.jobs[taskIndex];
+                    }
+                }
             }
         }
     }
+    // TODO: Extend the function above once have the BE;
+    // onst isTaskActive = currentTask.isActive;
+    //                     if (isTaskActive) {
+    //                         this.allActiveTasks.push(currentTask.name);
+    //                     }
 
-    fillTasksNamesList(tasksObj: [object]) {
-        this.tasksList = [];
-        for (const taskName in tasksObj) {
-            if (tasksObj.length > 0) {
-                this.tasksList.push(Object.keys(tasksObj[taskName]));
-            }
-        }
+    ngOnDestroy() {
+        this.crmDataLoadedSubscribtion.unsubscribe();
     }
-
 }

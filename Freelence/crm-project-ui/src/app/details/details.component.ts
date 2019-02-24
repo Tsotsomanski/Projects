@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Client} from '../Interfaces/Client.model';
 
 @Component({
   selector: 'app-details',
@@ -6,11 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./details.component.scss']
 })
 export class DetailsComponent implements OnInit {
-    // private tasks = ['make email', 'make profile', 'repair your pone', 'register in the site'];
+    @Input() currentClientData: Client;
 
-  constructor() { }
+    constructor() {}
 
-  ngOnInit() {
-  }
-
+    ngOnInit() {}
 }

@@ -1,0 +1,11 @@
+<div class='my-tasks-container'>
+    <div class='tasks-wrapper'>
+        <a ><h4>My Tasks</h4></a>
+    </div>
+    <div class='tasks-wrapper'>
+        <ul class='clients-tasks' *ngIf='tasksList'>
+            <li *ngFor='let task of tasksList'> {{task}} </li>
+        </ul>
+        <div *ngIf='!tasksList'>No tasks</div>
+    </div>
+</div>

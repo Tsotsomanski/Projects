@@ -1,3 +1,9 @@
 <h1>Details</h1>
-<div class='details-container'>
+<div class='details-container' *ngIf='currentClientData'>
+    <div class='client-info'>
+        <h3>{{currentClientData.name}}</h3>
+        <p>{{currentClientData.email}}</p>
+        <p>{{currentClientData.phone}}</p>
+        <p>{{currentClientData.registerDate}}</p>
+    </div>
 </div>

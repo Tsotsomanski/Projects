@@ -1,0 +1,35 @@
+@import "../../../assets/common";
+
+.tasks-per-client-container {
+    .tasks-wrapper {
+        .clients-tasks {
+            list-style: none;
+            margin-top: 5px;
+            padding: 0;
+            li {
+                padding: 3px 0 3px 10px;
+                cursor: pointer;
+                border-top: 1px solid transparent;
+                border-bottom: 1px solid transparent;
+                &:hover {
+                    border-top-color: $dark-gray;
+                    border-bottom-color: $dark-gray;
+                }
+            }
+        }
+    }
+    app-create-button {
+        .btn-container {
+            text-align: center;
+            .btn-create {
+                background: $blue!important;
+            }
+        }
+    }
+    h4 {
+        border-bottom: 2px solid orangered;
+    }
+    .tasks-wrapper {
+        cursor: pointer;
+    }
+}
