@@ -25,7 +25,9 @@ export class ClientsComponent implements OnInit, OnDestroy {
     }
 
     createClient(newClientName: string) {
-        this.crmService.setNewClient(newClientName);
+        this.crmService.setNewClient(newClientName).subscribe(data => {
+            console.log(data);
+        });
     }
 
     ngOnDestroy() {
