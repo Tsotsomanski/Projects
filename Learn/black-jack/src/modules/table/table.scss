@@ -1,0 +1,72 @@
+.blackjack-table {
+    background: url("../../assets/pictures/table-d.jpg"), no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+@media screen and (max-width: 834px){
+    background: url("../../assets/pictures/table-m.png");
+    background-position: top;
+}
+    .dealer {
+        display: flex;
+        height: 200px;
+        width: inherit;
+        .deck-container {
+            position: relative;
+            width: 10%;
+            margin-top: 20px;
+            .deck-of-cards {
+                .card {
+                    position: absolute;
+                }
+            }
+        }
+        .dealers-cards {
+            display: flex;
+            justify-content: space-around;
+            width: 90%;
+            @media screen and (max-width: 1110px) {
+                width: 65%;
+                min-width: 360px;
+                margin-left: 90px;
+            }
+        }
+    }
+
+    .player {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        width: 90%;
+        @media screen and (max-width: 850px) {
+            justify-content: flex-end;
+            flex-flow: column;
+            min-width: 545px;
+        }
+            .players-cards {
+            display: flex;
+            justify-content: flex-end;
+            width: 40%;
+            .cardholder:first-child {
+                margin-right: 50px;
+                .card {
+                    cursor: pointer;
+                }
+            }
+        }
+        .hit-btn {
+            background: yellow;
+            width: 100px;
+            padding-bottom: 10px;
+            font-size: 25px;
+            height: 30px;
+            cursor: pointer;
+            user-select: none;
+            @media screen and (max-width: 850px) {
+                margin-top: 139px;
+                border: 1px solid black;
+                border-radius: 50px;;
+            }
+        }
+    }
+}

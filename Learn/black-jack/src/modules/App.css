@@ -1,0 +1,18 @@
+.App {
+    text-align: center;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    height: 100vh;
+    min-width: 570px;
+}
+
+.play-btn {
+    width: 200px;
+    background: darkseagreen;
+    border-radius: 50px;
+    font-size: 30px;
+    padding: 10px 0;
+    cursor: pointer;
+    margin: 20px;
+}
