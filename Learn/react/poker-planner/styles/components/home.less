@@ -1,0 +1,79 @@
+.homepage-container {
+  min-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  justify-content: space-between;
+
+  .container {
+    width: 60%;
+
+    .welcome-header {
+      padding-bottom: 34px;
+      font-family: "Roboto Bold", sans-serif;
+      font-size: 36px;
+      text-align: left;
+      font-weight: 100;
+      color: @textColor;
+
+      span {
+        font-weight: bold;
+      }
+    }
+
+    .header-underline {
+      width: 60px;
+      border-bottom: 3px solid @textColor;
+    }
+
+    .homepage-text {
+      font-size: 14px;
+      text-align: left;
+      color: @textColor;
+      padding-top: 45px;
+      padding-bottom: 51px;
+    }
+
+    .login-container {
+      @media @phone {
+        flex-wrap: wrap;
+      }
+
+      display: flex;
+      color: @textColor;
+      line-height: 48px;
+      text-align: center;
+      font-family: Roboto, sans-serif;
+
+      span {
+        @media @phone {
+          padding: 0;
+          width: 215px;
+        }
+
+        padding: 0 20px;
+        font-size: 14px;
+      }
+
+      .btn-join-session, .btn-new-session {
+        @media @phone {
+          margin: 8px 0;
+        }
+        user-select: none;
+        cursor: pointer;
+        min-width: 90px;
+        width: 215px;
+        height: 48px;
+        font-size: calc(14px + 0.4vw);
+        font-weight: bold;
+        border-radius: 8px;
+        border: solid 2px @loginBtnBorder;
+        &:hover {
+          background: @headerColor;
+          border-color: @headerColor;
+        }
+      }
+    }
+  }
+}

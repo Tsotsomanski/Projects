@@ -1,0 +1,15 @@
+.text {
+  margin-left: 20px;
+  color: #0c5460;
+}
+.header {
+  text-align: center;
+  color: #0000cc;
+}
+.login-container {
+  display: flex;
+  width: 50%;
+  height: 50%;
+  background: antiquewhite;
+  justify-content: center;
+}

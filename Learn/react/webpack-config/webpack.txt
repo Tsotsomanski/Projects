@@ -1,0 +1,51 @@
+"use strict";
+const path = require('path');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+module.exports = [
+    {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        use: [
+            'ng-annotate-loader',
+            'awesome-typescript-loader'
+        ]
+    },
+    {
+        test: /\.html$/,
+        exclude: /node_modules/,
+        use: 'raw-loader',
+        exclude: /index\.html$/
+    },
+    {
+        test: /\.css$/,
+        use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: ['css-loader', 'less-loader'],
+            //publicPath: '/dist'
+        })
+    },
+    {
+        test: /\.less$/,
+        use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: ['css-loader', 'less-loader'],
+            //publicPath: '/dist'
+        })
+    },
+    {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: 'file-loader'
+    },
+    {
+        test: /\.(ttf|eot|svg|woff)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        use: 'file-loader'
+    },
+    /**
+     * File loader for supporting images, for example, in CSS files.
+     */
+    {
+        test: /\.(jpg|jpeg|png|gif)$/,
+        use: 'file-loader'
+    },
+];

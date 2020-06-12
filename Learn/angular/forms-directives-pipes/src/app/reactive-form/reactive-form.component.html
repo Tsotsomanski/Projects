@@ -1,0 +1,20 @@
+<form class="login-wrapper" [formGroup]="form" (ngSubmit)="log()">
+    <div class="form-group">
+        <label>Current Password</label>
+        <input type="password" class="form-control" formControlName="currentPass"/>
+        <div *ngIf="form.get('currentPass').touched && form.get('currentPass').invalid">
+          <div *ngIf="form.get('currentPass').errors.required">Password field is required</div>
+          <div *ngIf="form.get('currentPass').errors.minLength">Password should be at least 3 symbols</div>
+        </div>
+      </div>
+    <div class="form-group">
+      <label>New Password</label>
+      <input type="password" class="form-control" formControlName="newPass"/>
+    </div>
+    <div class="form-group">
+        <label>Confirm Password</label>
+        <input type="password" class="form-control" formControlName="matchPass"/>
+      </div>
+
+    <button type="submit" class="btn tn-primary">Submit</button>
+  </form>

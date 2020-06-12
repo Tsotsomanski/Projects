@@ -1,0 +1,25 @@
+{
+  "name": "webpackConfig",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Global-Group/GlobalizedWeb.git"
+  },
+  "author": "Sn3",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Global-Group/GlobalizedWeb/issues"
+  },
+  "homepage": "https://github.com/Global-Group/GlobalizedWeb#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "webpack": "^4.25.1"
+  }
+}

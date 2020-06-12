@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title>Invitation</title>
+    <link rel="stylesheet" type="text/css" href="fonts/icomoon/style.css"/>
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+</head>
+
+<body>
+
+<h1 class="banner">...Invitation for a romantic night ;)</h1>
+<!-- -->
+<div class="container">
+    <section class="login">
+        <h2><p id="before-pass">Only my lovely girl will know the username and the password...</p></h2>
+        <div class="input-container">
+            <input id="email" type="email" placeholder="username" name="e-mail"/>
+            <input id="password" type="password" placeholder="password"/>
+        </div>
+        <div class="login-btn-div">
+            <button class="login-btn"><span>Log in</span></button>
+        </div>
+
+    </section>
+    <section class="recipes-page">
+        <div class="main-nav">
+            <div>
+                <p><a href="#" class="nav-el nav-dinner"><b>Dinner</b></a></p>
+                <a href="#" class="nav-el nav-dinner"><img width="300px" height="200px" src="img/dinner.png"></a>
+            </div>
+            <div>
+                <p><a href="#" class="nav-el nav-cinema"><b>Cinema</b></a></p>
+                <a href="#" class="nav-el nav-cinema"><img width="200px" height="200px" src="img/cinema.png"></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="dinner-page">
+        <div class="back-icon">
+            <img id="back-icon" width="100px" height="100px" src="img/back.png">
+        </div>
+
+        <div>
+            <p class="diner-info">Restaurant Heppy Mladost | Location: city. Sofia, bul. Alexander Malinov 35-37 | Time
+                of reservation: 19:00</p>
+
+            <div>
+                <div class="img-container">
+                    <img width="300px" height="200px" src="img/happyImg1.jpg">
+                    <img width="350px" height="200px" src="img/happyImg2.jpg">
+                    <img width="300px" height="200px" src="img/happyImg3.jpg">
+                    <img width="300px" height="200px" src="img/happyImg4.jpg">
+
+                    <img width="300px" height="200px" src="img/happyImg5.jpg">
+                    <img width="300px" height="200px" src="img/happyImg6.jpg">
+                    <img width="200px" height="200px" src="img/happyImg7.jpg">
+                    <img width="300px" height="200px" src="img/happyImg8.jpg">
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="cinema-page">
+        <div class="back-icon">
+            <img id="back-icon-cinema" width="100px" height="100px" src="./img/back.png">
+        </div>
+
+        <div>
+            <div class="img-container">
+                <a href="https://www.kinoarena.com/bg/movie/dedpul-2">
+                    <img width="200px" height="300px" src="img/deadpool.jpeg">
+                </a>
+                <a href="https://www.kinoarena.com/bg/movie/nevazmojno-byagstvo-2-hades">
+                    <img width="200px" height="300px" src="img/hades.jpeg">
+                </a>
+                <a href="https://www.kinoarena.com/bg/movie/zad-borda">
+                    <img width="200px" height="300px" src="img/zadBorda.jpeg">
+                </a>
+                <a href="https://www.kinoarena.com/bg/movie/charovniyat-prints-reald-3d">
+                    <img width="200px" height="300px" src="img/princ.jpeg">
+                </a>
+                <a href="https://www.kinoarena.com/bg/movie/rampage-unishtojitelite-reald-3d">
+                    <img width="200px" height="300px" src="img/rampage.jpeg">
+                </a>
+            </div>
+
+            <div class="other-film">
+                <a href="https://www.kinoarena.com/bg/program/view/kino-arena-mladost">
+                    <img width="300px" height="250px" src="img/think.png">
+                </a>
+            </div>
+
+        </div>
+    </section>
+</div>
+</body>
+
+
+<script>
+    let recipesPage = document.getElementsByClassName('recipes-page')[0];
+    let login = document.getElementsByClassName('login')[0];
+    let mainNav = document.getElementsByClassName('main-nav')[0];
+
+    $('.login-btn').on('click', function (e) {
+        let email = $('#email').val();
+        let password = $('#password').val();
+
+        if (email == 'Elii_queen' && password == 'loveYou') {
+        alert('I love you and .... you are in :)');
+        $('.login').hide(700);
+        $('.recipes-page').show(100);
+
+        login.style.display = 'none';
+        recipesPage.style.visibility = 'visible';
+        recipesPage.style.display = 'flex';
+        mainNav.classList.toggle('fade-in');
+
+        $('body, html').css({"background": "url(./img/choisePic.jpg)", 'background-size': 'cover'});
+        $('.banner').css('background-color', 'transparent');
+        }
+        else {
+            alert('You entered a wrong email address and password. Please try again');
+            e.preventDefault();
+        }
+    });
+
+    $('.nav-dinner').on('click', function () {
+        $('.recipes-page').hide();
+        $('.dinner-page').css({
+            'display': 'flex',
+            'height': '100%',
+            'background': 'url(img/happy.jpg)',
+            'background-repeat': 'no-repeat',
+            'background-size': 'cover'
+        });
+    });
+
+    $('#back-icon').on('click', function () {
+        $('.dinner-page').hide();
+        $('.recipes-page').show();
+    });
+
+    $('#back-icon-cinema').on('click', function () {
+        $('.cinema-page').hide();
+        $('.recipes-page').show();
+    });
+
+
+    $('.nav-cinema').on('click', function () {
+        $('.recipes-page').hide();
+        $('.cinema-page').css({
+            'display': 'flex',
+            'height': '100%',
+            'background': 'url(img/cinemaBack.jpg)',
+            'background-repeat': 'no-repeat',
+            'background-size': 'cover'
+        });
+
+    })
+</script>
+</html>
