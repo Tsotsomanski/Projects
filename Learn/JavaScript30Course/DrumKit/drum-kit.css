@@ -1,0 +1,52 @@
+body {
+	background-color: black;
+	overflow-y: hidden;
+}
+
+.drum-kit-container {
+	background: url("./img/309722.jpg");
+	background-size: cover;
+	height: 100vh;
+}
+
+.drum-kit-container .keys {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color: white;
+}
+
+.keys .key {
+	border: 1px solid white;
+	box-shadow: 0 0 5px white;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+	padding: 20px;
+	margin: 20px;
+	width: 50px;
+	height: 50px;
+	transition: all 1s;
+}
+
+.keys .key span {
+	font-size: 12px;
+}
+
+.keys .key.playing {
+	transform:scale(1.1);
+	border-color: limegreen;
+	box-shadow: 0 0 10px limegreen;
+}
+
+kbd {
+	display: block;
+	font-size: 40px;
+}
+
+.sound {
+	font-size: 1.2rem;
+	text-transform: uppercase;
+	latter-spacing: 1px;
+	color: #00d4d0;
+}
