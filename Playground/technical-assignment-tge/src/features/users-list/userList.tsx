@@ -8,7 +8,6 @@ import styled from "styled-components";
 const UserList = () => {
   const dispatch = useAppDispatch();
   const userListData = useAppSelector(listOfUsers);
-  console.log(userListData);
 
   useEffect(() => {
     dispatch(loadUserList())
@@ -16,12 +15,11 @@ const UserList = () => {
 
   return(
     <Wrap>
-      {userListData.length && userListData.map((userData, index) => ( 
-        <div key={index}>
+      {userListData.length && userListData.map(userData => (
+        <div key={userData.id}>
            <ExpandableRow userInfo={userData} />
-           <p>{userData.name}</p>
-         </div>
-       ))}
+         </div>)
+       )}
     </Wrap>
   )
 }
