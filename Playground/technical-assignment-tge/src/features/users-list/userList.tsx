@@ -1,30 +1,27 @@
 import { useEffect } from "react";
 
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
-import { listOfUsers, loadUserList } from "./userListSlice";
 import ExpandableRow from "./expandableRow";
-import styled from "styled-components";
+import IUserData from "../shared/interfaces/IUserData";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { listOfUsers, loadUserList, chosenUserId } from "../shared/usersSlice";
 
 const UserList = () => {
   const dispatch = useAppDispatch();
-  const userListData = useAppSelector(listOfUsers);
-
+  const userListData: Array<IUserData> = useAppSelector(listOfUsers);
+  
   useEffect(() => {
     dispatch(loadUserList())
   }, []);
 
   return(
-    <Wrap>
-      {userListData.length > 0 && userListData.map(userData => (
+    <div>
+      {userListData && Object.keys(userListData).length > 0 && userListData.map((userData: IUserData) => (
         <div key={userData.id}>
            <ExpandableRow userInfo={userData} />
          </div>)
        )}
-    </Wrap>
+    </div>
   )
 }
 
 export default UserList;
-
-const Wrap = styled.div`
-`;

@@ -1,6 +1,6 @@
-import { Address, Company } from "../usersListAPI";
+import { Address, Company } from "../usersAPI";
 
-export interface UserData {
+export default interface IUserData {
   id: number;
   name: string;
   username: string;

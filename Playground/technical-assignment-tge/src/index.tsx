@@ -5,11 +5,11 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+import Posts from './features/user-posts/posts';
 import reportWebVitals from './reportWebVitals';
 import { store } from './app/store';
 import App from './App';
 import './index.css';
-import { Counter } from './features/counter/Counter';
 
 const router = createBrowserRouter([
   {
@@ -18,7 +18,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/posts",
-    element: <Counter />,
+    element: <Posts />,
   },
 ]);
 

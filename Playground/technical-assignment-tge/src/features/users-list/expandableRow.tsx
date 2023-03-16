@@ -2,13 +2,24 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import { UserData } from './interfaces.ts/common';
+
+import { useAppDispatch } from '../../app/hooks';
+import IUserData from '../shared/interfaces/IUserData';
+import { updateSelectedUserId } from '../shared/usersSlice';
+
 
 const MANDATORY_FIELDS = ["username", "email", "address.street", "address.suite", "address.city"];
 
-const ExpandableRow = ({userInfo}: any) => {
+interface ExpandableRowProps {
+  userInfo: IUserData;
+  defaultExpanded?: boolean;
+  disableCollapse?: boolean;
+}
+
+const ExpandableRow = ({userInfo, defaultExpanded = false, disableCollapse= false}: ExpandableRowProps) => {
+  const dispatch = useAppDispatch();
   const [actionBtnsDisabled, setActionBtnsDisabled] = useState(true);
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(defaultExpanded);
   const [sections, setSections]: any = useState({});
   const navigate = useNavigate();
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -43,14 +54,19 @@ const ExpandableRow = ({userInfo}: any) => {
       </ItemWrap>)
     });
 
+  const handleExpandUser = () => {
+    setIsExpanded(!isExpanded)
+    dispatch(updateSelectedUserId(userInfo.id))
+  }
+
   return (
     <Wrap>
-      <Header onClick={() => setIsExpanded(!isExpanded)}>
+      <Header onClick={() => !disableCollapse && handleExpandUser()}>
         <p>{userInfo.name}</p>
 
         <HeaderRightSide>
         <p>{userInfo.email}</p>
-        <p className={`arrow-${isExpanded ? "up" : "down"}`} />
+        {!disableCollapse && <p className={`arrow-${isExpanded ? "up" : "down"}`} />}
       </HeaderRightSide>
       </Header>
 
@@ -131,6 +147,7 @@ const Header = styled.div`
 
   p:first-child {
     padding-left: 30px;
+    padding-right: 30px;
   }
 
   .arrow-up, .arrow-down {
@@ -140,7 +157,6 @@ const Header = styled.div`
     border-top: 0;
     border-bottom: 10px solid rgba(0,0,0,0.15);
     margin-right: 30px;
-    margin-left: 30px;
   }
 
   .arrow-down {
