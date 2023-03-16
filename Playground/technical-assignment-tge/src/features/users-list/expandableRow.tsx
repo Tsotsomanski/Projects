@@ -1,22 +1,33 @@
+import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 
 const MANDATORY_FIELDS = ["username", "email", "address.street", "address.suite", "address.city"];
 
-const ExpandableRow = ({userInfo}: any) => {
+const ExpandableRow = (props: any) => {
+  const { userInfo } = props;
   const [isExpanded, setIsExpanded] = useState(false);
   const [sections, setSections]: any = useState({});
   const [actionBtnsDisabled, setActionBtnsDisabled]: any = useState(true);
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  let navigate = useNavigate();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   useEffect(() => {
     isExpanded && setSections(extractUserInfoSectionsRecursive(userInfo));
   }, [isExpanded, userInfo]);
 
-  const onSubmit = (data: any) => console.log(data);
-  const handleRevert = (data: any) => console.log(data);
-  const handleCancel = (data: any) => console.log(data);  
+  const onSubmit = (event: any, data: any) => {
+    if (!actionBtnsDisabled) {
+      console.log(data);
+    }
+  }
+
+
+  const handleRevert = () => {
+    reset();
+    setActionBtnsDisabled(true);
+  }
 
   const renderSectionItems = (items: any, section: string): any => Object.keys(items)
     .map(key => {
@@ -29,7 +40,7 @@ const ExpandableRow = ({userInfo}: any) => {
         <label>{key}</label>
         {key === "id" ? <span>{items[key]}</span> : <>
           <input defaultValue={items[key]} {...register(key, { required: isRequired })} />
-          {errors.exampleRequired && <span>This field is required</span>}
+          {errors[key] && <span className="error-msg">This field is required</span>}
         </>}
         
       </ItemWrap>)
@@ -47,7 +58,11 @@ const ExpandableRow = ({userInfo}: any) => {
       </Header>
 
       <Body className={isExpanded ? "expanded" : "collapsed"}>
-        <form onSubmit={handleSubmit(onSubmit)} onChange={() => setActionBtnsDisabled(false)}>
+        <SeePostsBtn onClick={() => navigate("/posts")}>See posts</SeePostsBtn>
+        <form
+          onSubmit={handleSubmit(onSubmit)} 
+          onChange={() => setActionBtnsDisabled(false)}
+        >
           { sections && Object.keys(sections).map(section => {
             return (
               <div key={section}>
@@ -58,7 +73,7 @@ const ExpandableRow = ({userInfo}: any) => {
 
           <ActionButtons className={actionBtnsDisabled ? "disabled" : ""}>
             <div>
-              <span onClick={() => !actionBtnsDisabled && handleCancel}>Cancel</span>/<span onClick={() => !actionBtnsDisabled && handleRevert}>Revert</span>
+              <span onClick={() => !actionBtnsDisabled && setIsExpanded(false)}>Cancel</span>/<span onClick={() => !actionBtnsDisabled && handleRevert()}>Revert</span>
             </div>
             <input type="submit" disabled={actionBtnsDisabled}/>
           </ActionButtons>
@@ -95,7 +110,6 @@ function extractUserInfoSectionsRecursive(userInfo: any, section?: string, nextR
 
 return result;
 };
-
 export default ExpandableRow;
 
 const Wrap = styled.div`
@@ -173,6 +187,20 @@ const Body = styled.div`
     font-family: inherit;
     border: 0.4px solid black;
     margin-bottom: 10px;
+    cursor: pointer;
+    border: none;
+
+    &:active {
+      box-shadow: 0 0 3px black;
+      text-shadow: 0 0 1px black;
+      border: none;
+    }
+
+    &:disabled {
+      box-shadow: none;
+      text-shadow: none;
+      cursor: default;
+    }
   }
 `;
 
@@ -194,6 +222,11 @@ const ItemWrap = styled.div`
     font-style: italic;
     margin-bottom: 10px;
   }
+
+  .error-msg {
+    color: red;
+    font-size: 12px;
+  }
 `;
 
 const ActionButtons = styled.div`
@@ -214,3 +247,24 @@ const ActionButtons = styled.div`
     cursor: pointer;
   }
 `
+
+const SeePostsBtn = styled.div`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 20px;
+    bottom: 50px;
+    width: 150px;
+    height: 50px;
+    color: green;
+    font-family: cursive;
+    border-radius: 50px;
+    background-color: white;
+    cursor: pointer;
+
+    &:hover {
+      color: white;
+      background-color: green;
+    }
+`;

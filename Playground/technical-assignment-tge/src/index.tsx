@@ -1,17 +1,33 @@
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
+import {
+  createBrowserRouter,
+  RouterProvider,
+} from "react-router-dom";
 
 import reportWebVitals from './reportWebVitals';
 import { store } from './app/store';
 import App from './App';
 import './index.css';
+import { Counter } from './features/counter/Counter';
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+  },
+  {
+    path: "/posts",
+    element: <Counter />,
+  },
+]);
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
 
 root.render(
     <Provider store={store}>
-      <App />
+      <RouterProvider router={router} />
     </Provider>
 );
 
