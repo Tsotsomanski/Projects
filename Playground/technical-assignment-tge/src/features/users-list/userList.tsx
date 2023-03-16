@@ -15,7 +15,7 @@ const UserList = () => {
 
   return(
     <Wrap>
-      {userListData.length && userListData.map(userData => (
+      {userListData.length > 0 && userListData.map(userData => (
         <div key={userData.id}>
            <ExpandableRow userInfo={userData} />
          </div>)

@@ -2,56 +2,67 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
 
+const MANDATORY_FIELDS = ["username", "email", "address.street", "address.suite", "address.city"];
+
 const ExpandableRow = ({userInfo}: any) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [sections, setSections]: any = useState({});
+  const [actionBtnsDisabled, setActionBtnsDisabled]: any = useState(true);
+  const { register, handleSubmit, formState: { errors } } = useForm();
 
   useEffect(() => {
     isExpanded && setSections(extractUserInfoSectionsRecursive(userInfo));
   }, [isExpanded, userInfo]);
 
-  // const onSubmit = (data: any) => console.log(data);
+  const onSubmit = (data: any) => console.log(data);
+  const handleRevert = (data: any) => console.log(data);
+  const handleCancel = (data: any) => console.log(data);  
 
-  const renderSectionItems = (items: any): any => Object.keys(items)
+  const renderSectionItems = (items: any, section: string): any => Object.keys(items)
     .map(key => {
+      const isGeneralSection = section === "general";
+      const isRequired = isGeneralSection ?
+      MANDATORY_FIELDS.find(fieldKey => fieldKey === key) :
+      MANDATORY_FIELDS.includes(`${section}.${key}`);
+
       return (<ItemWrap key={key}>
         <label>{key}</label>
-        <input defaultValue={items[key]} {...register(key)} />
+        {key === "id" ? <span>{items[key]}</span> : <>
+          <input defaultValue={items[key]} {...register(key, { required: isRequired })} />
+          {errors.exampleRequired && <span>This field is required</span>}
+        </>}
+        
       </ItemWrap>)
     });
 
   return (
     <Wrap>
       <Header onClick={() => setIsExpanded(!isExpanded)}>
-      <p>{userInfo.name}</p>
+        <p>{userInfo.name}</p>
 
-      <HeaderRightSide>
+        <HeaderRightSide>
         <p>{userInfo.email}</p>
         <p className={`arrow-${isExpanded ? "up" : "down"}`} />
       </HeaderRightSide>
-    </Header>
+      </Header>
 
       <Body className={isExpanded ? "expanded" : "collapsed"}>
-        { sections && Object.keys(sections).map(section => {
-          return (
-            <SectionWrap>
-              <h3>{section}</h3>
-              <InnerWrap>{renderSectionItems(sections[section])}</InnerWrap>
-            </SectionWrap>)
-        })}
+        <form onSubmit={handleSubmit(onSubmit)} onChange={() => setActionBtnsDisabled(false)}>
+          { sections && Object.keys(sections).map(section => {
+            return (
+              <div key={section}>
+                {section !== "general" && <h3>{section}</h3>}
+                <InnerWrap>{renderSectionItems(sections[section], section)}</InnerWrap>
+              </div>)
+          })}
 
-        {/* <form onSubmit={handleSubmit(onSubmit)}> */}
-          {/* register your input into the hook by invoking the "register" function */}
-          {/* <input defaultValue="test" {...register("example")} /> */}
-
-          {/* include validation with required or other standard HTML validation rules */}
-          {/* <input {...register("exampleRequired", { required: true })} /> */}
-          {/* errors will return when field validation fails  */}
-          {/* {errors.exampleRequired && <span>This field is required</span>} */}
-
-          {/* <input type="submit" /> */}
-        {/* </form> */}
+          <ActionButtons className={actionBtnsDisabled ? "disabled" : ""}>
+            <div>
+              <span onClick={() => !actionBtnsDisabled && handleCancel}>Cancel</span>/<span onClick={() => !actionBtnsDisabled && handleRevert}>Revert</span>
+            </div>
+            <input type="submit" disabled={actionBtnsDisabled}/>
+          </ActionButtons>
+        </form>
       </Body>
     </Wrap>
   )
@@ -143,23 +154,63 @@ const Body = styled.div`
     height: auto;
     max-height: 500px;
     transition: max-height 0.1s ease-in;
+    background-color: #e8e8e8;
   }
 
-`;
+  h3 {
+    text-align: left;
+    margin-left: 20px;
+    text-transform: capitalize;
+    font-size: 16px;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
 
-const SectionWrap = styled.div`
-
+  input[type=submit] {
+    height: 40px;
+    border-radius: 5px;
+    background-color: white;
+    font-family: inherit;
+    border: 0.4px solid black;
+    margin-bottom: 10px;
+  }
 `;
 
 const InnerWrap = styled.div`
   display: flex;
-  justify-content: space-between;
-  padding-left: 20px;
+  padding-top: 10px;
   padding-right: 20px;
+  padding-left: 20px;
 `;
 
 const ItemWrap = styled.div`
   display: flex;
   flex-flow: column;
   margin-bottom: 20px;
+  margin-right: 20px;
+
+  label {
+    text-transform: capitalize;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
 `;
+
+const ActionButtons = styled.div`
+  font-size: 14px;
+  user-select: none;
+
+  div {
+    margin-bottom: 10px;
+  }
+
+  &.disabled, &.disabled span:hover {
+    color: silver;
+    cursor: default;
+  }
+
+  span:hover {
+    color: red;
+    cursor: pointer;
+  }
+`
