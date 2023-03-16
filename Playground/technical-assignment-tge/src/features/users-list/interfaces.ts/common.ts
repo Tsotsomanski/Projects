@@ -1,6 +1,6 @@
 import { Address, Company } from "../usersListAPI";
 
-export interface UserListData {
+export interface UserData {
   id: number;
   name: string;
   username: string;

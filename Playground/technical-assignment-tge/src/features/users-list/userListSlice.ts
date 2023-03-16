@@ -1,16 +1,18 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState, AppThunk } from '../../app/store';
-import { UserListData } from './interfaces.ts/common';
+import { UserData } from './interfaces.ts/common';
 import { getUsersList } from './usersListAPI';
 
 export interface UserListState {
-  listOfUsers: Array<UserListData>;
+  listOfUsers: Array<UserData>;
   status: string;
+  chosenUser: UserData | {};
 }
 
 const initialState: UserListState = {
   listOfUsers: [],
-  status: "loading"
+  status: "loading",
+  chosenUser: {}
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -20,7 +22,7 @@ const initialState: UserListState = {
 export const loadUserList = createAsyncThunk(
   'userList/getUsersList',
   async () => {
-    const response: Array<UserListData> = await getUsersList();
+    const response: Array<UserData> = await getUsersList();
 
     console.log(response);
     return response;

@@ -2,38 +2,35 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
+import { UserData } from './interfaces.ts/common';
 
 const MANDATORY_FIELDS = ["username", "email", "address.street", "address.suite", "address.city"];
 
-const ExpandableRow = (props: any) => {
-  const { userInfo } = props;
+const ExpandableRow = ({userInfo}: any) => {
+  const [actionBtnsDisabled, setActionBtnsDisabled] = useState(true);
   const [isExpanded, setIsExpanded] = useState(false);
   const [sections, setSections]: any = useState({});
-  const [actionBtnsDisabled, setActionBtnsDisabled]: any = useState(true);
-  let navigate = useNavigate();
+  const navigate = useNavigate();
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
   useEffect(() => {
     isExpanded && setSections(extractUserInfoSectionsRecursive(userInfo));
   }, [isExpanded, userInfo]);
 
-  const onSubmit = (event: any, data: any) => {
-    if (!actionBtnsDisabled) {
-      console.log(data);
-    }
+  const onSubmit = (data: Record<string, string>): void => {
+    !actionBtnsDisabled && console.log(data);
   }
 
-
-  const handleRevert = () => {
+  const handleRevert = (): void => {
     reset();
     setActionBtnsDisabled(true);
   }
 
-  const renderSectionItems = (items: any, section: string): any => Object.keys(items)
-    .map(key => {
-      const isGeneralSection = section === "general";
-      const isRequired = isGeneralSection ?
-      MANDATORY_FIELDS.find(fieldKey => fieldKey === key) :
+  const renderSectionItems = (items: Record<string, string>, section: string): Array<JSX.Element> => Object.keys(items)
+    .map((key: string) => {
+      const isGeneralSection: boolean = section === "general";
+      const isRequired: boolean = isGeneralSection ?
+      !!MANDATORY_FIELDS.find(fieldKey => fieldKey === key) :
       MANDATORY_FIELDS.includes(`${section}.${key}`);
 
       return (<ItemWrap key={key}>
@@ -63,7 +60,8 @@ const ExpandableRow = (props: any) => {
           onSubmit={handleSubmit(onSubmit)} 
           onChange={() => setActionBtnsDisabled(false)}
         >
-          { sections && Object.keys(sections).map(section => {
+          {sections && Object.keys(sections).map(section => {
+
             return (
               <div key={section}>
                 {section !== "general" && <h3>{section}</h3>}
@@ -73,7 +71,8 @@ const ExpandableRow = (props: any) => {
 
           <ActionButtons className={actionBtnsDisabled ? "disabled" : ""}>
             <div>
-              <span onClick={() => !actionBtnsDisabled && setIsExpanded(false)}>Cancel</span>/<span onClick={() => !actionBtnsDisabled && handleRevert()}>Revert</span>
+              <span onClick={() => !actionBtnsDisabled && setIsExpanded(false)}>Cancel</span>/
+              <span onClick={() => !actionBtnsDisabled && handleRevert()}>Revert</span>
             </div>
             <input type="submit" disabled={actionBtnsDisabled}/>
           </ActionButtons>
@@ -87,7 +86,7 @@ function extractUserInfoSectionsRecursive(userInfo: any, section?: string, nextR
   let result: any = nextResult || {};
 
   Object.keys(userInfo).map((key: string) => {
-    const currentRowValue = userInfo[key];
+    const currentRowValue: string | Record<string, string> = userInfo[key];
 
     if (typeof currentRowValue === "object") {
       return extractUserInfoSectionsRecursive(currentRowValue, key, result);
@@ -105,11 +104,12 @@ function extractUserInfoSectionsRecursive(userInfo: any, section?: string, nextR
       }
     }
 
-  return result;
-});
+    return result;
+  });
 
-return result;
+  return result;
 };
+
 export default ExpandableRow;
 
 const Wrap = styled.div`

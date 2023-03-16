@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { UserListData } from "./interfaces.ts/common";
+import { UserData } from "./interfaces.ts/common";
 
 interface AddressGeo {
   lat: string;
@@ -21,10 +21,10 @@ export interface Company {
   bs: string;
 }
 
-export function getUsersList(): Promise<Array<UserListData>> {
+export function getUsersList(): Promise<Array<UserData>> {
   return axios.get("https://jsonplaceholder.typicode.com/users").then((payload) => payload.data)
 }
 
-export function getUser(userId: number): Promise<Array<UserListData>> {
+export function getUser(userId: number): Promise<Array<UserData>> {
   return axios.get("https://jsonplaceholder.typicode.com/users:" + userId)
 }
