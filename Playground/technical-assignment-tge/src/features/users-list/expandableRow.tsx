@@ -17,12 +17,14 @@ interface ExpandableRowProps {
 }
 
 const ExpandableRow = ({userInfo, defaultExpanded = false, disableCollapse= false}: ExpandableRowProps) => {
+  console.log('userInfo: ', userInfo);
   const dispatch = useAppDispatch();
   const [actionBtnsDisabled, setActionBtnsDisabled] = useState(true);
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
   const [sections, setSections]: any = useState({});
   const navigate = useNavigate();
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const isPostsPage = window.location.pathname === "/posts";
 
   useEffect(() => {
     isExpanded && setSections(extractUserInfoSectionsRecursive(userInfo));
@@ -71,7 +73,8 @@ const ExpandableRow = ({userInfo, defaultExpanded = false, disableCollapse= fals
       </Header>
 
       <Body className={isExpanded ? "expanded" : "collapsed"}>
-        <SeePostsBtn onClick={() => navigate("/posts")}>See posts</SeePostsBtn>
+        {!isPostsPage && <SeePostsBtn onClick={() => navigate("/posts")}>See posts</SeePostsBtn>}
+        
         <form
           onSubmit={handleSubmit(onSubmit)} 
           onChange={() => setActionBtnsDisabled(false)}
@@ -87,7 +90,7 @@ const ExpandableRow = ({userInfo, defaultExpanded = false, disableCollapse= fals
 
           <ActionButtons className={actionBtnsDisabled ? "disabled" : ""}>
             <div>
-              <span onClick={() => !actionBtnsDisabled && setIsExpanded(false)}>Cancel</span>/
+            {!isPostsPage && <span onClick={() => !actionBtnsDisabled && setIsExpanded(false)}>Cancel/</span>}
               <span onClick={() => !actionBtnsDisabled && handleRevert()}>Revert</span>
             </div>
             <input type="submit" disabled={actionBtnsDisabled}/>
@@ -248,6 +251,7 @@ const ItemWrap = styled.div`
 const ActionButtons = styled.div`
   font-size: 14px;
   user-select: none;
+  text-align: center;
 
   div {
     margin-bottom: 10px;

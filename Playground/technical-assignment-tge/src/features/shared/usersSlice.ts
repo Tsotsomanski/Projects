@@ -1,31 +1,36 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { getUser, getUserPosts, getUsersList } from './usersAPI';
+import { editUserPosts, getUser, getUserPosts, getUsersList } from './usersAPI';
 import { RootState, AppThunk } from '../../app/store';
 import IUserData from './interfaces/IUserData';
+import IPost from './interfaces/IPosts';
 
 export interface UserListState {
-  listOfUsers: Array<IUserData>;
-  status: string;
-  chosenUserId: number | undefined;
   chosenUser: IUserData | undefined;
+  chosenUserId: number | undefined;
+  listOfUsers: Array<IUserData>;
   usersPosts: any;
+  status: string;
 }
 
 const initialState: UserListState = {
-  listOfUsers: [],
-  status: "loading",
   chosenUserId: undefined,
   chosenUser: undefined,
-  usersPosts: undefined
+  usersPosts: undefined,
+  status: "loading",
+  listOfUsers: []
 };
+
+interface UpdateUserParams {
+  id: number;
+  posts: Array<IPost>;
+}
 
 export const loadUserList = createAsyncThunk(
   'users/getUsersList',
   async () => {
     const response: Array<IUserData> = await getUsersList();
 
-    console.log(response);
     return response;
   }
 );
@@ -42,12 +47,21 @@ export const loadUser = createAsyncThunk(
 export const loadUserPosts = createAsyncThunk(
   'users/getUserPosts',
   async (id: number) => {
-    const response: any = await getUserPosts(id);
+    const response: Array<IPost> = await getUserPosts(id);
 
     return response;
   }
 );
 
+export const updateUserPosts = createAsyncThunk(
+  'users/editUserPosts',
+  async ({id, posts}: UpdateUserParams) => {
+    // console.log('usersPosts: ', usersPosts);
+    await editUserPosts(id, posts);
+    
+    return posts;
+  }
+);
 
 export const usersSlice = createSlice({
   name: 'users',
@@ -76,6 +90,8 @@ export const usersSlice = createSlice({
         state.chosenUser = action.payload;
       })
       .addCase(loadUserPosts.fulfilled, (state, action) => {
+        state.usersPosts = action.payload;
+      }).addCase(updateUserPosts.fulfilled, (state, action) => {
         state.usersPosts = action.payload;
       });
   },
