@@ -17,6 +17,8 @@ const UserList = () => {
 
   return(
     <Wrap>
+      <Title>Users:</Title>
+
       { !userListData && <Loading /> }
 
       {userListData && Object.keys(userListData).length > 0 && userListData.map((userData: IUserData) => (
@@ -35,3 +37,7 @@ const Wrap = styled.div`
   flex-flow: column;
   justify-content: center;
 `;
+
+const Title = styled.h1`
+  text-align: center;
+`

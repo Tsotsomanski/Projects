@@ -102,17 +102,5 @@ export const chosenUserId = (state: RootState) => state.usersInfo.chosenUserId;
 export const listOfUsers = (state: RootState) => state.usersInfo.listOfUsers;
 export const chosenUser = (state: RootState) => state.usersInfo.chosenUser;
 export const usersPosts = (state: RootState) => state.usersInfo.usersPosts;
-export const selectCount = (state: RootState) => state.counter.value;
-
-// We can also write thunks by hand, which may contain both sync and async logic.
-// Here's an example of conditionally dispatching actions based on current state.
-export const incrementIfOdd =
-  (amount: number): AppThunk =>
-  (dispatch, getState) => {
-    const currentValue = selectCount(getState());
-    if (currentValue % 2 === 1) {
-      dispatch(incrementByAmount(amount));
-    }
-  };
 
 export default usersSlice.reducer;
