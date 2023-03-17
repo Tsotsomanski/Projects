@@ -56,7 +56,6 @@ export const loadUserPosts = createAsyncThunk(
 export const updateUserPosts = createAsyncThunk(
   'users/editUserPosts',
   async ({id, posts}: UpdateUserParams) => {
-    // console.log('usersPosts: ', usersPosts);
     await editUserPosts(id, posts);
     
     return posts;

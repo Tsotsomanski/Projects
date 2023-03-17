@@ -24,6 +24,7 @@ const Wrap = styled.div`
   height: 100vh;
   top: 0;
   left: 0;
+  z-index: 99;
 
   &>div {
     width: 350px;

@@ -19,8 +19,6 @@ const Posts = () => {
   const userId = useAppSelector(chosenUserId);
   const userData = useAppSelector(chosenUser);
   const postsData = useAppSelector(usersPosts);
-  console.log('postsData: ', postsData);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -42,12 +40,11 @@ const Posts = () => {
           <h2>{userData?.name} posts</h2>
       
           <div>
-          {!postsData?.length && <div className="dot-stretching"></div>}
-            {/* {!postsData?.length && <p>No posts available...</p>} */}
+            {!postsData?.length && <p>No posts available...</p>}
 
             {postsData?.length > 0 &&
               postsData.map((post: IPost, index: number) => (
-                <Post data={post} userId={userId} index={index} postsData={postsData}/>
+                <Post key={`${userId}${index}`} data={post} userId={userId} index={index} postsData={postsData}/>
               ))}
           </div>
         </PostsSection>
@@ -72,77 +69,5 @@ const PostsSection = styled.section`
     flex-wrap: wrap;
     justify-content: center;
     padding: 20px;
-  }
-
-  @keyframes dot-stretching {
-    0% {
-      transform: scale(1.25, 1.25);
-    }
-    50%, 60% {
-      transform: scale(0.8, 0.8);
-    }
-    100% {
-      transform: scale(1.25, 1.25);
-    }
-  }
-
-  @keyframes dot-stretching-before {
-    0% {
-      transform: translate(0) scale(0.7, 0.7);
-    }
-    50%, 60% {
-      transform: translate(-20px) scale(1, 1);
-    }
-    100% {
-      transform: translate(0) scale(0.7, 0.7);
-    }
-  }
-
-  @keyframes dot-stretching-after {
-    0% {
-      transform: translate(0) scale(0.7, 0.7);
-    }
-    50%, 60% {
-      transform: translate(20px) scale(1, 1);
-    }
-    100% {
-      transform: translate(0) scale(0.7, 0.7);
-    }
-  }
-
-  .dot-stretching {
-    position: relative;
-    width: 10px;
-    height: 10px;
-    border-radius: 5px;
-    background-color: #9880ff;
-    color: #9880ff;
-    transform: scale(1.25, 1.25);
-    animation: dot-stretching 2s infinite ease-in;
-
-    &:before, :after {
-      content: "";
-      display: inline-block;
-      position: absolute;
-      top: 0;
-    }
-
-    &:before {
-      width: 10px;
-      height: 10px;
-      border-radius: 5px;
-      background-color: #9880ff;
-      color: #9880ff;
-      animation: dot-stretching-before 2s infinite ease-in;
-    }
-
-    &:after {
-      width: 10px;
-      height: 10px;
-      border-radius: 5px;
-      background-color: #9880ff;
-      color: #9880ff;
-      animation: dot-stretching-after 2s infinite ease-in;
-    }
   }
 `

@@ -1,6 +1,8 @@
 import { useEffect } from "react";
+import styled from "styled-components";
 
 import ExpandableRow from "./expandableRow";
+import Loading from "../shared/components/loading";
 import IUserData from "../shared/interfaces/IUserData";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { listOfUsers, loadUserList, chosenUserId } from "../shared/usersSlice";
@@ -14,14 +16,22 @@ const UserList = () => {
   }, []);
 
   return(
-    <div>
+    <Wrap>
+      { !userListData && <Loading /> }
+
       {userListData && Object.keys(userListData).length > 0 && userListData.map((userData: IUserData) => (
         <div key={userData.id}>
            <ExpandableRow userInfo={userData} />
          </div>)
        )}
-    </div>
+    </Wrap>
   )
 }
 
 export default UserList;
+
+const Wrap = styled.div`
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+`;

@@ -17,7 +17,6 @@ interface ExpandableRowProps {
 }
 
 const ExpandableRow = ({userInfo, defaultExpanded = false, disableCollapse= false}: ExpandableRowProps) => {
-  console.log('userInfo: ', userInfo);
   const dispatch = useAppDispatch();
   const [actionBtnsDisabled, setActionBtnsDisabled] = useState(true);
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
