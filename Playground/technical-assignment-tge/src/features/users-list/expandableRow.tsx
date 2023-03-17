@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { useAppDispatch } from '../../app/hooks';
 import IUserData from '../shared/interfaces/IUserData';
-import { updateSelectedUserId } from '../shared/usersSlice';
+import { updateChosenUser, updateSelectedUserId, updateUserInfo } from '../shared/usersSlice';
 
 
 const MANDATORY_FIELDS = ["username", "email", "address.street", "address.suite", "address.city"];
@@ -22,7 +22,7 @@ const ExpandableRow = ({userInfo, defaultExpanded = false, disableCollapse= fals
   const [isExpanded, setIsExpanded] = useState(defaultExpanded);
   const [sections, setSections]: any = useState({});
   const navigate = useNavigate();
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+  const { register, handleSubmit, reset, formState: { errors, dirtyFields } } = useForm();
   const isPostsPage = window.location.pathname === "/posts";
 
   useEffect(() => {
@@ -30,7 +30,10 @@ const ExpandableRow = ({userInfo, defaultExpanded = false, disableCollapse= fals
   }, [isExpanded, userInfo]);
 
   const onSubmit = (data: Record<string, string>): void => {
-    !actionBtnsDisabled && console.log(data);
+    if (!actionBtnsDisabled) {
+      dispatch(updateUserInfo({userId: userInfo.id, updatedUserData: dirtyFields}));
+      setActionBtnsDisabled(true);
+    }
   }
 
   const handleRevert = (): void => {
@@ -56,8 +59,9 @@ const ExpandableRow = ({userInfo, defaultExpanded = false, disableCollapse= fals
     });
 
   const handleExpandUser = () => {
-    setIsExpanded(!isExpanded)
-    dispatch(updateSelectedUserId(userInfo.id))
+    setIsExpanded(!isExpanded);
+    dispatch(updateSelectedUserId(userInfo.id));
+    dispatch(updateChosenUser(userInfo));
   }
 
   return (
@@ -100,7 +104,7 @@ const ExpandableRow = ({userInfo, defaultExpanded = false, disableCollapse= fals
   )
 }
 
-function extractUserInfoSectionsRecursive(userInfo: any, section?: string, nextResult?: any) {
+export function extractUserInfoSectionsRecursive(userInfo: any, section?: string, nextResult?: any) {
   let result: any = nextResult || {};
 
   Object.keys(userInfo).map((key: string) => {

@@ -36,7 +36,7 @@ const Post = ({data, userId, index, postsData}: PostProps) => {
     updatedPostData.splice(index, 1, postInfo);
 
     setEditInProgress(false);
-    dispatch(updateUserPosts({id: userId, posts: updatedPostData}));
+    dispatch(updateUserPosts({userId, posts: updatedPostData}));
   };
 
   const handleDeleteBtnClick = (postId: number) => {
@@ -47,7 +47,7 @@ const Post = ({data, userId, index, postsData}: PostProps) => {
   const deletePostIfConfirmed = (isConfermed: boolean) => {
     if (isConfermed && userId) {
       const updatedPostData: Array<IPost> = postsData.filter((post: IPost) => post.id !== postToDelete);
-      dispatch(updateUserPosts({id: userId, posts: updatedPostData}));
+      dispatch(updateUserPosts({userId, posts: updatedPostData}));
       setShowConfirmationPopup(false);
     } else {
       setShowConfirmationPopup(false);
