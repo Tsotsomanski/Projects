@@ -55,7 +55,7 @@ export const updateUserInfo = createAsyncThunk("users/updateUser",
     const state: any = getState();
     const currentUserData = {...state.usersInfo.chosenUser};
     const updatedUserInfo = await updateUser(updatedFields, formData, currentUserData)
-    
+
     console.log('updatedUserInfo: ', updatedUserInfo);
     return updatedUserInfo;
 });
@@ -108,7 +108,10 @@ export const usersSlice = createSlice({
         state.usersPosts = action.payload;
       }).addCase(updateUserPosts.fulfilled, (state, action) => {
         state.usersPosts = action.payload;
+      }).addCase(updateUserInfo.fulfilled, (state, action) => {
+        state.chosenUser = action.payload;
       });
+      
   },
 });
 

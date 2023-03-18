@@ -11,7 +11,7 @@ import {
   chosenUserId,
   chosenUser,
   usersPosts,
-  loadUser
+  // loadUser
    } from "../shared/usersSlice";
 import Post from "./post";
 
@@ -19,6 +19,7 @@ const Posts = () => {
   const dispatch = useAppDispatch();
   const userId = useAppSelector(chosenUserId);
   const userData = useAppSelector(chosenUser);
+  console.log('userData: ', userData);
   const postsData = useAppSelector(usersPosts);
   const navigate = useNavigate();
 
@@ -28,7 +29,7 @@ const Posts = () => {
       return;
     }
 
-    dispatch(loadUser(userId));
+    // dispatch(loadUser(userId));
     dispatch(loadUserPosts(userId));
   }, []);
 
