@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { editUserPosts, getUser, getUserPosts, getUsersList, updateUser } from './usersAPI';
-import { RootState, AppThunk, store } from '../../app/store';
+import { RootState } from '../../app/store';
 import IUserData from './interfaces/IUserData';
 import IPost from './interfaces/IPosts';
 
@@ -51,7 +51,7 @@ export const loadUser = createAsyncThunk(
 );
 
 export const updateUserInfo = createAsyncThunk("users/updateUser",
-  async ({userId, updatedFields, formData}: IUpdateUserParams, {getState}) => {
+  async ({updatedFields, formData}: IUpdateUserParams, {getState}) => {
     const state: any = getState();
     const currentUserData = {...state.usersInfo.chosenUser};
     const updatedUserInfo = await updateUser(updatedFields, formData, currentUserData)
