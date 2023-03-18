@@ -5,8 +5,12 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+import ErrorPage from './features/shared/components/errorPage';
+import UserMenu from "./features/shared/components/userMenu";
+import Loading from "./features/shared/components/loading";
 import Posts from './features/user-posts/posts';
 import reportWebVitals from './reportWebVitals';
+import Tasks from './features/tasks/tasks';
 import { store } from './app/store';
 import App from './App';
 import './index.css';
@@ -15,10 +19,16 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    errorElement: <ErrorPage />,
+    // loader: <Loading />
   },
   {
     path: "/posts",
     element: <Posts />,
+  },
+  {
+    path: "/tasks",
+    element: <Tasks />,
   },
 ]);
 
