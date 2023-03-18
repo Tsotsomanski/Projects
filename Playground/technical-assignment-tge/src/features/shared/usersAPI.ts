@@ -20,6 +20,42 @@ export async function getUser(userId: number): Promise<IUserData> {
 // PLEASE READ: 
 // I commented that function because I couldn't find any information how I can update the user information and what kind of params shall I provide.
 
+export async function updateUser(updatedFields: Array<string>, formData: Record<string, string | number>, currentUserData: IUserData): Promise<IUserData> {
+  const updatedPropertiesObject: any = {};
+
+  updatedFields.forEach((editedField: string) => {
+    const [objProperty, fieldName]: any = editedField.split("-");
+    const fieldValue = formData[editedField];
+
+    updatedPropertiesObject[objProperty] = {
+      ...updatedPropertiesObject[objProperty],
+      [fieldName]: fieldValue
+    }
+  });
+
+  const updatedUserInfo: IUserData = {
+    ...currentUserData,
+    ...updatedPropertiesObject.general,
+    address: {
+      ...currentUserData.address,
+      ...updatedPropertiesObject.address,
+      geo: {
+        ...currentUserData.address.geo,
+        ...updatedPropertiesObject.address.geo
+      }
+    },
+    company: {
+      ...currentUserData.company,
+      ...updatedPropertiesObject.company
+    }
+  };
+
+  return updatedUserInfo; 
+}
+
+  // PLEASE READ: 
+// I commented that function below because I couldn't find any information how I can update the user information and instead of it I mocked the response in the abbove one.
+
 // export async function updateUser(userId: number, updatedUserData: IUserData): Promise<IUserData> {
 //   return axios
 //     .post("https://jsonplaceholder.typicode.com/users?userId=" + userId, updatedUserData)

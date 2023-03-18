@@ -1,10 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { editUserPosts, getUser, getUserPosts, getUsersList } from './usersAPI';
+import { editUserPosts, getUser, getUserPosts, getUsersList, updateUser } from './usersAPI';
 import { RootState, AppThunk, store } from '../../app/store';
 import IUserData from './interfaces/IUserData';
 import IPost from './interfaces/IPosts';
-import { extractUserInfoSectionsRecursive } from '../users-list/expandableRow';
 
 export interface UserListState {
   chosenUser: IUserData | undefined;
@@ -29,7 +28,8 @@ interface IUpdateUserPostsParams {
 
 interface IUpdateUserParams {
   userId: number;
-  updatedUserData: any;
+  updatedFields: Array<string>;
+  formData: Record<string, string | number>;
 }
 
 export const loadUserList = createAsyncThunk(
@@ -51,21 +51,13 @@ export const loadUser = createAsyncThunk(
 );
 
 export const updateUserInfo = createAsyncThunk("users/updateUser",
-async ({userId, updatedUserData}: IUpdateUserParams, {getState}) => {
-  // PLEASE READ: There
-  // I commented that row because I couldn't find any information on how can I update the user's information and what kind of params shall I provide.
-  // const response = await updateUser(id, updatedUserData)
-  const state: any = getState();
-  const sections = extractUserInfoSectionsRecursive(state.usersInfo.chosenUser);
-  console.log('updatedUserData: ', updatedUserData);
-  console.log('sections: ', sections);
-  console.log('chosenUser: ', state.usersInfo.chosenUser);
-  
-  // chosenUser = {
-  //     ...updatedUserData
-  // }
-
-  return updatedUserData
+  async ({userId, updatedFields, formData}: IUpdateUserParams, {getState}) => {
+    const state: any = getState();
+    const currentUserData = {...state.usersInfo.chosenUser};
+    const updatedUserInfo = await updateUser(updatedFields, formData, currentUserData)
+    
+    console.log('updatedUserInfo: ', updatedUserInfo);
+    return updatedUserInfo;
 });
 
 export const loadUserPosts = createAsyncThunk(

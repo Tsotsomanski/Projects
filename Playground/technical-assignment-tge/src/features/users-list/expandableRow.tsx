@@ -29,9 +29,9 @@ const ExpandableRow = ({userInfo, defaultExpanded = false, disableCollapse= fals
     isExpanded && setSections(extractUserInfoSectionsRecursive(userInfo));
   }, [isExpanded, userInfo]);
 
-  const onSubmit = (data: Record<string, string>): void => {
+  const onSubmit = (data: Record<string, string | number>): void => {
     if (!actionBtnsDisabled) {
-      dispatch(updateUserInfo({userId: userInfo.id, updatedUserData: dirtyFields}));
+      dispatch(updateUserInfo({userId: userInfo.id, updatedFields: Object.keys(dirtyFields), formData: data}));
       setActionBtnsDisabled(true);
     }
   }
@@ -40,6 +40,12 @@ const ExpandableRow = ({userInfo, defaultExpanded = false, disableCollapse= fals
     reset();
     setActionBtnsDisabled(true);
   }
+  
+  const handleExpandUser = () => {
+    setIsExpanded(!isExpanded);
+    dispatch(updateSelectedUserId(userInfo.id));
+    dispatch(updateChosenUser(userInfo));
+  }
 
   const renderSectionItems = (items: Record<string, string>, section: string): Array<JSX.Element> => Object.keys(items)
     .map((key: string) => {
@@ -47,22 +53,17 @@ const ExpandableRow = ({userInfo, defaultExpanded = false, disableCollapse= fals
       const isRequired: boolean = isGeneralSection ?
       !!MANDATORY_FIELDS.find(fieldKey => fieldKey === key) :
       MANDATORY_FIELDS.includes(`${section}.${key}`);
+      const fieldKey = `${section}-${key}`;
 
       return (<ItemWrap key={key}>
         <label>{key}</label>
         {key === "id" ? <span>{items[key]}</span> : <>
-          <input defaultValue={items[key]} {...register(key, { required: isRequired })} />
-          {errors[key] && <span className="error-msg">This field is required</span>}
+          <input defaultValue={items[key]} {...register(fieldKey, { required: isRequired })} />
+          {errors[fieldKey] && <span className="error-msg">This field is required</span>}
         </>}
         
       </ItemWrap>)
     });
-
-  const handleExpandUser = () => {
-    setIsExpanded(!isExpanded);
-    dispatch(updateSelectedUserId(userInfo.id));
-    dispatch(updateChosenUser(userInfo));
-  }
 
   return (
     <Wrap>
@@ -104,7 +105,7 @@ const ExpandableRow = ({userInfo, defaultExpanded = false, disableCollapse= fals
   )
 }
 
-export function extractUserInfoSectionsRecursive(userInfo: any, section?: string, nextResult?: any) {
+function extractUserInfoSectionsRecursive(userInfo: any, section?: string, nextResult?: any) {
   let result: any = nextResult || {};
 
   Object.keys(userInfo).map((key: string) => {
