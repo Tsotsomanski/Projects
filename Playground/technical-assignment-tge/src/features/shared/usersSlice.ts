@@ -56,7 +56,6 @@ export const updateUserInfo = createAsyncThunk("users/updateUser",
     const currentUserData = {...state.usersInfo.chosenUser};
     const updatedUserInfo = await updateUser(updatedFields, formData, currentUserData)
 
-    console.log('updatedUserInfo: ', updatedUserInfo);
     return updatedUserInfo;
 });
 

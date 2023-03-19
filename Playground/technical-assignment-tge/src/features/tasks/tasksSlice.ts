@@ -45,7 +45,6 @@ export const tasksSlice = createSlice({
       updatedToDo.completed = action.payload.isCompleted;
       updatedTasks[action.payload.todoIndex] = updatedToDo;
       state.tasks = updatedTasks;
-      state.filteredTasks = updatedTasks;
     },
     filterBy: (state, action: PayloadAction<IFilterArgs>) => {
       state.filteredTasks = filterTasks(action.payload.filter, action.payload.value, state.tasks);

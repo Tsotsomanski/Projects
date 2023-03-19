@@ -19,7 +19,6 @@ const Posts = () => {
   const dispatch = useAppDispatch();
   const userId = useAppSelector(chosenUserId);
   const userData = useAppSelector(chosenUser);
-  console.log('userData: ', userData);
   const postsData = useAppSelector(usersPosts);
   const navigate = useNavigate();
 
