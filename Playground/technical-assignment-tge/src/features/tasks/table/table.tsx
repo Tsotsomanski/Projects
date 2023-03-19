@@ -69,6 +69,8 @@ export default Table;
 const TableWrap = styled.div`
   table, td, th {
     border: 1px solid;
+    padding-top: 3px;
+    padding-bottom: 3px;
   }
 
   table {
@@ -76,6 +78,11 @@ const TableWrap = styled.div`
     border-collapse: collapse;
 
     thead {
+
+      h2, h4 {
+        margin: 5px;
+      }
+
       h4 {
         text-transform: capitalize;
       }

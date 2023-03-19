@@ -33,8 +33,8 @@ const Wrap = styled.div`
   label {
     display: block;
     position: relative;
-    width: 40px;
-    height: 20px;
+    width: 30px;
+    height: 12px;
     cursor: pointer;
     text-indent: -9999px;
     background: grey;
@@ -43,10 +43,10 @@ const Wrap = styled.div`
     &:after {
       content: '';
       position: absolute;
-      top: 0;
+      top: -1px;
       left: -1px;
-      width: 20px;
-      height: 20px;
+      width: 14px;
+      height: 14px;
       background: #dedede;
       border-radius: 90px;
       transition: 0.3s;
@@ -63,12 +63,7 @@ const Wrap = styled.div`
     }
   }
   
-  input:checked+label:after {
-    left: calc(100% - 5px);
-    transform: translateX(-100%);
-  }
-
   label:active:after {
-    width: 41.5px;
+    width: 32px;
   }
 `;
