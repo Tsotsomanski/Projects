@@ -116,7 +116,8 @@ const Wrap = styled.div`
       text-align: center;
       background: silver;
       box-shadow: 0 0 12px black;
-
+      z-index: 1;
+      
       li {
         margin-bottom: 1.2rem;
         font-size: 1.5rem;

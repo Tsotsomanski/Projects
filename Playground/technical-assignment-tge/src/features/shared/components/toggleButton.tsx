@@ -27,7 +27,7 @@ export default ToggleButton;
 
 const Wrap = styled.div`
   input[type=checkbox]{
-	  display: block;
+	  display: none;
   }
 
   label {

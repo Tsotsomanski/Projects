@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from 'react-router-dom';
 
 import IPost from "../shared/interfaces/IPosts";
-import Loading from "../shared/components/loading"
+import Loader from "../shared/components/loader";
 import ExpandableRow from "../users-list/expandableRow";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { 
@@ -34,7 +34,7 @@ const Posts = () => {
   }, [dispatch, navigate]);
 
   return(<div>
-    {!userData && !postsData && <Loading />}
+    {!userData && !postsData && <Loader />}
 
     {userData && Object.keys(userData).length ? <ExpandableRow userInfo={userData} defaultExpanded={true} disableCollapse/> : null}
 

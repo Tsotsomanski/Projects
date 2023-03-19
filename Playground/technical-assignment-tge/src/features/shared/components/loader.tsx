@@ -1,6 +1,6 @@
 import styled from "styled-components"
 
-const Loading = () => {
+const Loader = () => {
   return (
     <Wrap>
       <p>Loading</p>
@@ -9,7 +9,7 @@ const Loading = () => {
   )
 }
 
-export default Loading;
+export default Loader;
 
 const Wrap = styled.div`
   display: flex;

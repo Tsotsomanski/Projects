@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import ExpandableRow from "./expandableRow";
 import Error from "../shared/components/error";
-import Loading from "../shared/components/loading";
+import Loader from "../shared/components/loader";
 
 import IUserData from "../shared/interfaces/IUserData";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
@@ -22,7 +22,7 @@ const UserList = () => {
     <Wrap>
       <Title>Users:</Title>
 
-      { userDataStatus === "loading" && <Loading /> }
+      { userDataStatus === "loading" && <Loader /> }
 
       { userDataStatus === "failed" && <Error /> }
 
