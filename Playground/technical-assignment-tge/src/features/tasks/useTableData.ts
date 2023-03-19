@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 
 import IToDo from "../shared/interfaces/IToDo";
-import { loadTasks, page, tasks } from "./tasksSlice";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { filteredTasks, loadTasks, page } from "./tasksSlice";
 
 const NUMBER_OF_PAGES = 10;
 
 const useTableData = () => {
   const dispatch = useAppDispatch();
-  const tasksData: Array<IToDo> = useAppSelector(tasks);
+  const tasksData: Array<IToDo> = useAppSelector(filteredTasks);
   const currentPage: number = useAppSelector(page);
   const [currentPageData, setCurrentPageData]: any = useState();
 

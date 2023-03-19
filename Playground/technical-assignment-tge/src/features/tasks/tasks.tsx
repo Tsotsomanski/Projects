@@ -21,7 +21,7 @@ const Tasks = () => {
       default: ""
     },
     completed: {
-      options: ["completed", "not completed", "all"],
+      options: ["all", "completed", "not completed"],
       default: "accending"
     }
   }

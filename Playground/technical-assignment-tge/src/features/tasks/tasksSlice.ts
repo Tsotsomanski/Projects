@@ -1,8 +1,9 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-import IToDo from "../shared/interfaces/IToDo";
-import { RootState } from "../../app/store";
 import { getTasks } from "./tasksAPI";
+import { RootState } from "../../app/store";
+import IToDo from "../shared/interfaces/IToDo";
+import { filterTasks } from "./utils/filterTasks";
 
 export const loadTasks = createAsyncThunk(
   'tasks/getTasks',
@@ -19,11 +20,13 @@ interface IFilterArgs {
 }
 
 interface TasksState {
+  filteredTasks: Array<IToDo>;
   tasks: Array<IToDo>;
   page: number;
 }
 
 const initialState: TasksState = {
+  filteredTasks: [],
   tasks: [],
   page: 1
 }
@@ -42,41 +45,24 @@ export const tasksSlice = createSlice({
       updatedToDo.completed = action.payload.isCompleted;
       updatedTasks[action.payload.todoIndex] = updatedToDo;
       state.tasks = updatedTasks;
+      state.filteredTasks = updatedTasks;
     },
     filterBy: (state, action: PayloadAction<IFilterArgs>) => {
-      const filteredData = [...state.tasks];
-      console.log('action.payload: ', action.payload);
-      const filterName = action.payload.filter;
-      const sortBy = action.payload.value;
-
-      switch(filterName) {
-        case "completed": 
-        break;
-
-        case "title": 
-        break;
-
-        case "userId": 
-        break;
-
-        default:
-          return;
-      }
-      
-
-      state.tasks = filteredData;
+      state.filteredTasks = filterTasks(action.payload.filter, action.payload.value, state.tasks);
     }
   },
   extraReducers: (builder) => {
     builder
     .addCase(loadTasks.fulfilled, (state, action) => {
       state.tasks = action.payload;
+      state.filteredTasks = action.payload;
     })
   }
 })
 
 export const { updatePageNumber, updateToDoState, filterBy } = tasksSlice.actions;
 
+export const filteredTasks = (state: RootState) => state.tasks.filteredTasks;
 export const tasks = (state: RootState) => state.tasks.tasks;
 export const page = (state: RootState) => state.tasks.page;
 

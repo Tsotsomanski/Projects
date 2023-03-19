@@ -17,7 +17,7 @@ const Filter = ({name, options, defaultValue}: IFilterPorps) => {
   }
 
   return (<Wrap >
-    <img src="/filter-icon.png" alt="image" />
+    <img src="/filter-icon.png" alt="" />
     <select defaultValue={defaultValue || "default"} onChange={handleOnChange}>
       {!defaultValue && <option value="default" defaultValue="" disabled hidden>Sort by</option>}
       

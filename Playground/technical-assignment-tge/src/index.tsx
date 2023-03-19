@@ -2,7 +2,6 @@ import { Provider } from 'react-redux';
 import { createRoot } from 'react-dom/client';
 import {
   Route,
-  Routes,
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
