@@ -5,7 +5,18 @@ import { RootState } from '../../app/store';
 import IUserData from './interfaces/IUserData';
 import IPost from './interfaces/IPosts';
 
-export interface UserListState {
+interface IUpdateUserPostsParams {
+  userId: number;
+  posts: Array<IPost>;
+}
+
+interface IUpdateUserParams {
+  userId: number;
+  updatedFields: Array<string>;
+  formData: Record<string, string | number>;
+}
+
+interface UserListState {
   chosenUser: IUserData | undefined;
   chosenUserId: number | undefined;
   listOfUsers: Array<IUserData>;
@@ -20,17 +31,6 @@ const initialState: UserListState = {
   status: "loading",
   listOfUsers: []
 };
-
-interface IUpdateUserPostsParams {
-  userId: number;
-  posts: Array<IPost>;
-}
-
-interface IUpdateUserParams {
-  userId: number;
-  updatedFields: Array<string>;
-  formData: Record<string, string | number>;
-}
 
 export const loadUserList = createAsyncThunk(
   'users/getUsersList',

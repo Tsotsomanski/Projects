@@ -107,14 +107,15 @@ const Wrap = styled.div`
       box-shadow: inset 0 0 2000px rgba(255, 255, 255, .5);
       height: 105px;
       width: 100%;
-      transform: translate(-150%);
+      transform: translateY(-100%);
       display: flex;
       flex-direction: column;
       margin-left: -40px;
       padding-left: 50px;
       transition: transform 0.5s ease-in-out;
       text-align: center;
-      background-color: white;
+      background: silver;
+      box-shadow: 0 0 12px black;
 
       li {
         margin-bottom: 1.2rem;
@@ -159,8 +160,7 @@ const Wrap = styled.div`
   }
 
   .container {
-    max-width: 1050px;
-    width: 90%;
+    width: 100%;
     margin: auto;
   }
 `;

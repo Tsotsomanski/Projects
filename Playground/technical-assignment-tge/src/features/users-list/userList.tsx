@@ -16,7 +16,7 @@ const UserList = () => {
 
   useEffect(() => {
     dispatch(loadUserList())
-  }, []);
+  }, [dispatch]);
 
   return(
     <Wrap>

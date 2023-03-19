@@ -31,7 +31,7 @@ const Posts = () => {
 
     // dispatch(loadUser(userId));
     dispatch(loadUserPosts(userId));
-  }, []);
+  }, [dispatch, navigate]);
 
   return(<div>
     {!userData && !postsData && <Loading />}
