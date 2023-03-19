@@ -5,7 +5,7 @@ import Loader from "../shared/components/loader";
 const Tasks = () => {
   const {currentPageData, pagesCount, page} = useTableData();
 
-  return(<div>
+  return(<>
       {currentPageData?.length > 0 ?
         <Table
             data={currentPageData}
@@ -14,7 +14,7 @@ const Tasks = () => {
           /> :
          <Loader />
       }
-  </div>)
+  </>)
 }
 
 export default Tasks;

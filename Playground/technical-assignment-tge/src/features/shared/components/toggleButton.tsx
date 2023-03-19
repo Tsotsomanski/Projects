@@ -44,20 +44,22 @@ const Wrap = styled.div`
       content: '';
       position: absolute;
       top: 0;
-      left: 5px;
+      left: -1px;
       width: 20px;
       height: 20px;
-      background: #fff;
+      background: #dedede;
       border-radius: 90px;
       transition: 0.3s;
+      box-shadow: 0 0 2px black;
     }
   }
 
   label {
     background: red;  
+    box-shadow: 0 0 2px black;
 
     &.checked {
-      background: #bada55;
+      background: #1fff5a;
     }
   }
   
@@ -67,6 +69,6 @@ const Wrap = styled.div`
   }
 
   label:active:after {
-    width: 60px;
+    width: 41.5px;
   }
 `;

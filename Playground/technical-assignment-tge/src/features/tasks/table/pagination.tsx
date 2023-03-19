@@ -26,21 +26,24 @@ const Pagination = ({pagesCount, currentPage, handleChangePage}: IPaginationProp
 export default Pagination;
 
 const Container = styled.div`
-display: flex;
-  width: max-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
   height: 30px;
-  border: 1px solid black;
 `;
 
 const PageNumberBox = styled.span`
   width: 30px;
   height: 30px;
-  border-right: 1px solid black;
   text-align: center;
   line-height: 28px;
+  border-radius: 50%;
+  margin-right: 5px;
 
   &:last-child {
     border-right: none;
+    margin-right: 0;
   }
 
   &:hover {

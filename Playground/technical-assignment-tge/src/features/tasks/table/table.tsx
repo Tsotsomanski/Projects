@@ -52,8 +52,8 @@ const Table = ({data, page, pagesCount}: ITableProps) => {
               )
             })}
           </tbody>
-
         </table>
+
         <Pagination
             handleChangePage={(selectedPage: number) => dispatch(updatePageNumber(selectedPage))}
             pagesCount={pagesCount}
@@ -67,9 +67,6 @@ export default Table;
 
 
 const TableWrap = styled.div`
-  height: 80vh;
-  border: 1px solid black;
-
   table, td, th {
     border: 1px solid;
   }
