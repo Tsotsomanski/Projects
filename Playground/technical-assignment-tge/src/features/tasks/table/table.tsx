@@ -2,19 +2,33 @@ import styled from "styled-components";
 
 import Pagination from "../table/pagination";
 import IToDo from "../../shared/interfaces/IToDo";
+import Filter from "../../shared/components/filter";
 import { useAppDispatch } from "../../../app/hooks";
 import ToggleButton from "../../shared/components/toggleButton";
 import { updatePageNumber, updateToDoState } from "../tasksSlice";
 
 interface ITableProps {
+  filters: Array<string>;
   data: Array<IToDo>;
   pagesCount: number;
+  filtersConfig: any;
   page: number;
 }
 
-const Table = ({data, page, pagesCount}: ITableProps) => {
+interface IHeadingItem {
+  title: string;
+  hasFilter: boolean;
+}
+
+const Table = ({data, page, pagesCount, filters, filtersConfig}: ITableProps) => {
   const dispatch = useAppDispatch();
-  const tableHeadings = Object.keys(data[0]);
+
+  const tableHeadings: Array<IHeadingItem> = Object.keys(data[0]).map((item: string) => {
+    return {
+      title: item,
+      hasFilter: filters.includes(item)
+    }
+  });
 
   const updateToDoStatus = (isCompleted: boolean, todoIndex: number ) => {
     dispatch(updateToDoState({todoIndex, isCompleted}));
@@ -28,7 +42,23 @@ const Table = ({data, page, pagesCount}: ITableProps) => {
               <th colSpan={4}><h2>List of tasks</h2></th>
             </tr>
             <tr>
-              {tableHeadings.map(heading => <th key={heading}><h4>{heading}</h4></th>)}
+              {tableHeadings.map((heading: IHeadingItem) => {
+                const currentDropdown = filtersConfig[heading.title];
+
+                return <th key={heading.title}>
+                  <div className="heading-wrap">
+                    {heading.hasFilter && currentDropdown?.options.length &&
+                      <Filter
+                        name={heading.title}
+                        options={currentDropdown.options}
+                        defaultValue={currentDropdown.default}
+                      />
+                    }
+                    
+                    <h4>{heading.title}</h4>
+                  </div>
+                </th>
+              })}
             </tr>
           </thead>
 
@@ -67,6 +97,8 @@ export default Table;
 
 
 const TableWrap = styled.div`
+  padding-bottom: 50px;
+
   table, td, th {
     border: 1px solid;
     padding-top: 3px;
@@ -90,6 +122,16 @@ const TableWrap = styled.div`
 
     th {
       text-align: center;
+      height: 30px;
+
+      .heading-wrap {
+        display: flex;
+        align-items: baseline;
+
+        img {
+          height: 10px;
+        }
+      }
 
       div {
         display: flex;

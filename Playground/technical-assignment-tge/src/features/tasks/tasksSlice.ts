@@ -13,6 +13,11 @@ export const loadTasks = createAsyncThunk(
   }
 );
 
+interface IFilterArgs {
+  filter: string;
+  value: string;
+}
+
 interface TasksState {
   tasks: Array<IToDo>;
   page: number;
@@ -37,6 +42,29 @@ export const tasksSlice = createSlice({
       updatedToDo.completed = action.payload.isCompleted;
       updatedTasks[action.payload.todoIndex] = updatedToDo;
       state.tasks = updatedTasks;
+    },
+    filterBy: (state, action: PayloadAction<IFilterArgs>) => {
+      const filteredData = [...state.tasks];
+      console.log('action.payload: ', action.payload);
+      const filterName = action.payload.filter;
+      const sortBy = action.payload.value;
+
+      switch(filterName) {
+        case "completed": 
+        break;
+
+        case "title": 
+        break;
+
+        case "userId": 
+        break;
+
+        default:
+          return;
+      }
+      
+
+      state.tasks = filteredData;
     }
   },
   extraReducers: (builder) => {
@@ -47,7 +75,7 @@ export const tasksSlice = createSlice({
   }
 })
 
-export const { updatePageNumber, updateToDoState } = tasksSlice.actions;
+export const { updatePageNumber, updateToDoState, filterBy } = tasksSlice.actions;
 
 export const tasks = (state: RootState) => state.tasks.tasks;
 export const page = (state: RootState) => state.tasks.page;
