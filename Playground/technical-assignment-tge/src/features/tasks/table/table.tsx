@@ -30,8 +30,8 @@ const Table = ({data, page, pagesCount, filters, filtersConfig}: ITableProps) =>
     }
   });
 
-  const updateToDoStatus = (isCompleted: boolean, todoIndex: number ) => {
-    dispatch(updateToDoState({todoIndex, isCompleted}));
+  const updateToDoStatus = (isCompleted: boolean, taskId: number ) => {
+    dispatch(updateToDoState({isCompleted, taskId}));
   }
 
   return (
@@ -67,12 +67,10 @@ const Table = ({data, page, pagesCount, filters, filtersConfig}: ITableProps) =>
               return (
                 <tr key={rowData.id}>
                   {Object.values(rowData).map((field: any, index) => {
-                    const currentTaskIndex = (page * data.length) - data.length +  todoIndex;
-
                     return <th key={`${index}${rowData.id}`}>{ typeof field === "boolean" ? 
                       <ToggleButton
                         handleChange={updateToDoStatus}
-                        taskIndex={currentTaskIndex}
+                        taskId={rowData.id}
                         isChecked={field}
                       /> :
                       <span>{field}</span>

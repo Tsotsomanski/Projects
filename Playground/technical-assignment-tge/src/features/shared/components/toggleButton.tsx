@@ -4,21 +4,21 @@ import styled from "styled-components";
 interface IToggleButtonProps {
   isChecked: boolean;
   handleChange: any;
-  taskIndex: number;
+  taskId: number;
 }
 
-const ToggleButton = ({isChecked, taskIndex, handleChange}: IToggleButtonProps) => {
+const ToggleButton = ({isChecked, handleChange, taskId}: IToggleButtonProps) => {
   const [checked, setChecked] = useState(isChecked);
 
   const handleOnChange = () => {
     setChecked(!checked);
-    handleChange(!checked, taskIndex);
+    handleChange(!checked, taskId);
   }
 
   return (
     <Wrap>
-      <label className={isChecked ? "checked" : ""} htmlFor={`switch-${taskIndex}`}>Toggle</label>
-      <input type="checkbox" id={`switch-${taskIndex}`} checked={checked} onChange={handleOnChange}/>
+      <label className={isChecked ? "checked" : ""} htmlFor={`switch-${taskId}`}>Toggle</label>
+      <input type="checkbox" id={`switch-${taskId}`} checked={checked} onChange={handleOnChange}/>
     </Wrap>
   )
 }

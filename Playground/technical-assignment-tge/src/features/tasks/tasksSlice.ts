@@ -40,11 +40,18 @@ export const tasksSlice = createSlice({
     },
     updateToDoState: (state, action: PayloadAction<any>) => {
       let updatedTasks: Array<IToDo> = [...state.tasks];
-      let updatedToDo: IToDo = updatedTasks[action.payload.todoIndex];
+      const updatedTaskId: number = action.payload.taskId;
+      const indexOriginalData: number = updatedTasks.findIndex(task => task.id === updatedTaskId);
+      let updatedToDo: IToDo = updatedTasks[indexOriginalData];
       
       updatedToDo.completed = action.payload.isCompleted;
-      updatedTasks[action.payload.todoIndex] = updatedToDo;
+      updatedTasks[indexOriginalData] = updatedToDo;
       state.tasks = updatedTasks;
+      
+      let updatedFilteredTasks: Array<IToDo> = [...state.filteredTasks];
+      const indexFilteredData = updatedFilteredTasks.findIndex(task => task.id === updatedTaskId);
+      updatedFilteredTasks[indexFilteredData] = updatedToDo;
+      state.filteredTasks = updatedFilteredTasks;
     },
     filterBy: (state, action: PayloadAction<IFilterArgs>) => {
       state.filteredTasks = filterTasks(action.payload.filter, action.payload.value, state.tasks);
