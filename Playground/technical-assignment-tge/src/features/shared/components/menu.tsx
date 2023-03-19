@@ -73,11 +73,11 @@ const Wrap = styled.div`
       }
 
       a {
+        padding: 0.7rem;
         text-decoration: none;
-        color: #0e2431;
         font-weight: 500;
         font-size: 1.2rem;
-        padding: 0.7rem;
+        color: #0e2431;
 
         &:hover{
           font-weight: bolder;
@@ -85,32 +85,32 @@ const Wrap = styled.div`
       }
 
       input[type=checkbox] {
-        position: absolute;
         display: block;
-        height: 32px;
-        width: 32px;
+        position: absolute;
         top: 20px;
         left: 20px;
-        z-index: 5;
+        width: 32px;
+        height: 32px;
         opacity: 0;
         cursor: pointer;
+        z-index: 5;
       }
 
       .hamburger-lines {
-        display: block;
-        height: 26px;
-        width: 32px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         position: absolute;
         top: 17px;
         left: 20px;
+        width: 32px;
+        height: 26px;
         z-index: 2;
-        flex-direction: column;
-        justify-content: space-between;
 
         .line {
           display: block;
-          height: 4px;
           width: 100%;
+          height: 4px;
           border-radius: 10px;
           background: #0e2431;
         }
