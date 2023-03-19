@@ -1,12 +1,12 @@
 import { Outlet } from "react-router-dom";
 
 import './App.css';
-import UserMenu from './features/shared/components/userMenu';
+import Menu from './features/shared/components/menu';
 
 function App() {
   return (
     <div className="App">
-      <UserMenu />
+      <Menu />
       <Outlet />
      </div>
   );
