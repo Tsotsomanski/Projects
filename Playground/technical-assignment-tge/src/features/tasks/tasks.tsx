@@ -13,7 +13,7 @@ const Tasks = () => {
 
   const tableFiltersConfig: any = {
     userId: {
-      options: ["all", ...userIds],
+      options: [...userIds, "all"],
       default: "all"
     },
     title: {
@@ -21,8 +21,8 @@ const Tasks = () => {
       default: ""
     },
     completed: {
-      options: ["all", "completed", "not completed"],
-      default: "accending"
+      options: ["completed", "not completed", "all"],
+      default: "all"
     }
   }
 

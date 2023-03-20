@@ -21,11 +21,13 @@ interface IFilterArgs {
 
 interface TasksState {
   filteredTasks: Array<IToDo>;
+  selectedFilter: string;
   tasks: Array<IToDo>;
   page: number;
 }
 
 const initialState: TasksState = {
+  selectedFilter: "",
   filteredTasks: [],
   tasks: [],
   page: 1
@@ -55,6 +57,9 @@ export const tasksSlice = createSlice({
     },
     filterBy: (state, action: PayloadAction<IFilterArgs>) => {
       state.filteredTasks = filterTasks(action.payload.filter, action.payload.value, state.tasks);
+    },
+    updateSelectedFilter: (state, action: PayloadAction<string>) => {
+      state.selectedFilter = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -66,8 +71,9 @@ export const tasksSlice = createSlice({
   }
 })
 
-export const { updatePageNumber, updateToDoState, filterBy } = tasksSlice.actions;
+export const { updateSelectedFilter, updatePageNumber, updateToDoState, filterBy } = tasksSlice.actions;
 
+export const selectedFilter = (state: RootState) => state.tasks.selectedFilter;
 export const filteredTasks = (state: RootState) => state.tasks.filteredTasks;
 export const tasks = (state: RootState) => state.tasks.tasks;
 export const page = (state: RootState) => state.tasks.page;
